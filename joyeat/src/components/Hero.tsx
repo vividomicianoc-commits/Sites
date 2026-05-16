@@ -79,45 +79,67 @@ export default function Hero() {
           </div>
 
           {/* Right — visual */}
-          <div className="hide-mobile" style={{ position: 'relative' }}>
-            {/* Main circle */}
+          <div className="hide-mobile" style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            {/* Outer decorative rings */}
+            <div style={{
+              position: 'absolute', width: '468px', height: '468px', borderRadius: '50%',
+              border: '1px dashed rgba(253,105,0,0.18)',
+              top: '50%', left: '50%', transform: 'translate(-50%,-50%)',
+            }} />
+
+            {/* Main visual circle */}
             <div className="float" style={{
               width: '420px', height: '420px', borderRadius: '50%',
-              background: 'linear-gradient(135deg, var(--joy-orange) 0%, #ff9a3c 100%)',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              position: 'relative', margin: '0 auto',
-              boxShadow: '0 40px 100px rgba(253,105,0,0.25)',
+              overflow: 'hidden', position: 'relative',
+              background: 'linear-gradient(145deg, #fff5ee 0%, #ffebd6 60%, #ffe0c0 100%)',
+              boxShadow: '0 40px 100px rgba(253,105,0,0.22), 0 0 0 5px rgba(253,105,0,0.08)',
             }}>
-              {/* Logo inside circle */}
-              <div style={{ textAlign: 'center' }}>
-                <div style={{
-                  fontFamily: 'var(--font-display)', fontWeight: 900, fontSize: '72px',
-                  lineHeight: 1, color: '#fff', letterSpacing: '-0.02em',
-                }}>
-                  Jo<span style={{ display: 'inline-block', transform: 'scaleX(-1)', color: 'rgba(255,255,255,0.8)' }}>ʎ</span>
-                </div>
-                <div style={{
-                  fontFamily: 'var(--font-display)', fontWeight: 400, fontSize: '32px',
-                  color: 'rgba(255,255,255,0.85)', letterSpacing: '0.04em',
-                }}>
-                  eat
-                </div>
-                <div style={{
-                  fontFamily: 'var(--font-body)', fontSize: '11px', fontWeight: 300,
-                  color: 'rgba(255,255,255,0.65)', letterSpacing: '0.15em', textTransform: 'uppercase',
-                  marginTop: '12px',
-                }}>
-                  Em tempo de comer bem
-                </div>
-              </div>
+              {/* SVG food bowl illustration */}
+              <svg viewBox="0 0 420 420" width="420" height="420" xmlns="http://www.w3.org/2000/svg" style={{ position: 'absolute', inset: 0 }}>
+                {/* Bowl shadow */}
+                <ellipse cx="210" cy="390" rx="130" ry="18" fill="rgba(253,105,0,0.12)" />
+                {/* Bowl body */}
+                <path d="M80 220 Q80 360 210 360 Q340 360 340 220 Z" fill="#fff" opacity="0.95" />
+                {/* Bowl rim */}
+                <ellipse cx="210" cy="220" rx="130" ry="28" fill="#fff" />
+                <ellipse cx="210" cy="220" rx="130" ry="28" fill="none" stroke="#f0e0c8" strokeWidth="2" />
+                {/* Rice / grain base */}
+                <ellipse cx="210" cy="224" rx="108" ry="18" fill="#f5e6c8" />
+                {/* Greens cluster left */}
+                <circle cx="148" cy="206" r="28" fill="#88dd03" opacity="0.9" />
+                <circle cx="136" cy="198" r="18" fill="#6ab802" />
+                <circle cx="158" cy="195" r="14" fill="#a3e635" opacity="0.8" />
+                {/* Protein (chicken/tofu) center */}
+                <rect x="185" y="188" width="50" height="34" rx="10" fill="#fd6900" opacity="0.85" />
+                <rect x="189" y="192" width="42" height="26" rx="7" fill="#ff8c3a" opacity="0.7" />
+                {/* Cherry tomatoes */}
+                <circle cx="265" cy="200" r="14" fill="#ff4444" opacity="0.85" />
+                <circle cx="280" cy="210" r="11" fill="#e63333" opacity="0.8" />
+                <circle cx="255" cy="212" r="9" fill="#ff6666" opacity="0.7" />
+                {/* Avocado slice */}
+                <ellipse cx="174" cy="228" rx="16" ry="22" fill="#5a9e3a" opacity="0.85" />
+                <ellipse cx="174" cy="228" rx="10" ry="14" fill="#7dc93e" />
+                <ellipse cx="174" cy="228" rx="5" ry="8" fill="#4a7a2a" />
+                {/* Seeds / sesame dots */}
+                {[230,240,250,220,260].map((x,i)=>(
+                  <circle key={i} cx={x} cy={228+i*3-6} r="2.5" fill="#e8c87a" opacity="0.9" />
+                ))}
+                {/* Sauce drizzle */}
+                <path d="M190 186 Q200 175 215 182 Q225 170 238 180" stroke="#fd6900" strokeWidth="3" fill="none" strokeLinecap="round" opacity="0.6" />
+                {/* Lemon wedge */}
+                <path d="M288 195 Q298 185 308 195 Q298 210 288 195 Z" fill="#f5d060" opacity="0.9" />
+                <line x1="298" y1="185" x2="298" y2="210" stroke="#e8bc30" strokeWidth="1" opacity="0.5" />
+              </svg>
+              {/* Warm gradient overlay at bottom */}
+              <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(circle at 70% 80%, rgba(253,105,0,0.08) 0%, transparent 60%)' }} />
             </div>
 
             {/* Floating chips */}
             {[
-              { text: '⚡ Rápido', top: '8%', left: '-8%', bg: 'var(--joy-green)', color: 'var(--joy-grafite)', delay: '0s' },
-              { text: '🌿 Comida real', top: '20%', right: '-12%', bg: '#fff', color: 'var(--joy-grafite)', delay: '0.5s' },
-              { text: '😊 Sem culpa', bottom: '25%', left: '-10%', bg: 'var(--joy-yellow)', color: 'var(--joy-grafite)', delay: '1s' },
-              { text: '✓ Transparente', bottom: '10%', right: '-8%', bg: 'var(--joy-grafite)', color: '#fff', delay: '1.5s' },
+              { text: '⚡ Rápido', top: '8%', left: '-4%', bg: 'var(--joy-green)', color: 'var(--joy-grafite)', delay: '0s' },
+              { text: '🌿 Comida real', top: '22%', right: '-10%', bg: '#fff', color: 'var(--joy-grafite)', delay: '0.5s' },
+              { text: '😊 Sem culpa', bottom: '22%', left: '-8%', bg: 'var(--joy-orange)', color: '#fff', delay: '1s' },
+              { text: '✓ Transparente', bottom: '8%', right: '-6%', bg: 'var(--joy-grafite)', color: '#fff', delay: '1.5s' },
             ].map((chip, i) => (
               <div key={i} style={{
                 position: 'absolute', top: chip.top, bottom: chip.bottom,
@@ -128,6 +150,7 @@ export default function Hero() {
                 boxShadow: '0 8px 24px rgba(22,22,22,0.12)',
                 animation: `float ${5 + i}s ease-in-out infinite`,
                 animationDelay: chip.delay,
+                whiteSpace: 'nowrap',
               }}>
                 {chip.text}
               </div>

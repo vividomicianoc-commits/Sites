@@ -1,4 +1,5 @@
 'use client';
+import Logo from './Logo';
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -9,10 +10,8 @@ export default function Footer() {
         <div style={{ display:'grid', gridTemplateColumns:'2fr 1fr 1fr 1fr', gap:'48px', marginBottom:'64px' }} className="footer-grid">
           {/* Brand */}
           <div>
-            <div style={{ fontFamily:'var(--font-display)', fontWeight:900, fontSize:'22px', letterSpacing:'-0.01em', marginBottom:'14px' }}>
-              <span style={{ color:'var(--joy-orange)' }}>Joy</span>
-              <span style={{ color:'var(--joy-grafite)' }}>Y</span>
-              <span style={{ color:'var(--joy-green-dk)' }}>eat</span>
+            <div style={{ marginBottom:'14px', lineHeight:0 }}>
+              <Logo size={26} />
             </div>
             <p style={{ fontFamily:'var(--font-body)', fontSize:'14px', lineHeight:1.8, color:'var(--joy-gray)', maxWidth:'260px', marginBottom:'24px' }}>
               Fast casual saudável para a vida real.<br />Em tempo de comer bem.

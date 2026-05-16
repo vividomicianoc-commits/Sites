@@ -22,10 +22,10 @@ const pillars = [
 ];
 
 const menu = [
-  { name: 'Power Bowl', desc: 'Base de grãos, proteína grelhada, vegetais frescos', tag: 'Favorito', accent: 'var(--joy-orange)' },
-  { name: 'Fresh Wrap', desc: 'Folha crocante, recheio curado, muito sabor', tag: 'Novo', accent: 'var(--joy-green)' },
-  { name: 'Joy Burger', desc: 'Blend especial, ingredientes honestos, sabor real', tag: 'Top', accent: 'var(--joy-orange)' },
-  { name: 'Green Bowl', desc: 'Leveza máxima, energia garantida para a tarde', tag: 'Leve', accent: 'var(--joy-green)' },
+  { name: 'Power Bowl', desc: 'Base de grãos, proteína grelhada, vegetais frescos', tag: 'Favorito', accent: 'var(--joy-orange)', emoji: '🥗', bg: 'linear-gradient(135deg, #fff5ee 0%, #fde8d0 100%)', icon: '#fd6900' },
+  { name: 'Fresh Wrap', desc: 'Folha crocante, recheio curado, muito sabor', tag: 'Novo', accent: 'var(--joy-green-dk)', emoji: '🌯', bg: 'linear-gradient(135deg, #f0ffe0 0%, #dff5bc 100%)', icon: '#6ab802' },
+  { name: 'Joy Burger', desc: 'Blend especial, ingredientes honestos, sabor real', tag: 'Top', accent: 'var(--joy-orange)', emoji: '🍔', bg: 'linear-gradient(135deg, #fff8ee 0%, #fde8c5 100%)', icon: '#fd6900' },
+  { name: 'Green Bowl', desc: 'Leveza máxima, energia garantida para a tarde', tag: 'Leve', accent: 'var(--joy-green-dk)', emoji: '🥬', bg: 'linear-gradient(135deg, #f4ffe8 0%, #e0f5c8 100%)', icon: '#6ab802' },
 ];
 
 export default function JoyeatSection() {
@@ -111,17 +111,35 @@ export default function JoyeatSection() {
               >
                 {/* Visual */}
                 <div style={{
-                  height:'160px', position:'relative',
-                  background:`linear-gradient(135deg, ${item.accent}22 0%, ${item.accent}0a 100%)`,
+                  height:'160px', position:'relative', overflow:'hidden',
+                  background: item.bg,
                   display:'flex', alignItems:'center', justifyContent:'center',
                 }}>
-                  <div className="float" style={{ width:'80px', height:'80px', borderRadius:'50%', background:`${item.accent}30`, border:`2px solid ${item.accent}40` }} />
+                  {/* Large decorative circle */}
+                  <div style={{
+                    position:'absolute', width:'140px', height:'140px', borderRadius:'50%',
+                    background:`${item.icon}12`, top:'50%', left:'50%',
+                    transform:'translate(-50%,-50%)',
+                  }} />
+                  <div style={{
+                    position:'absolute', width:'100px', height:'100px', borderRadius:'50%',
+                    background:`${item.icon}18`, top:'50%', left:'50%',
+                    transform:'translate(-50%,-50%)',
+                  }} />
+                  {/* Emoji icon */}
+                  <span style={{ fontSize:'56px', lineHeight:1, position:'relative', zIndex:1, filter:'drop-shadow(0 4px 12px rgba(0,0,0,0.1))' }}>{item.emoji}</span>
+                  {/* Tag badge */}
                   <div style={{
                     position:'absolute', top:'12px', right:'12px',
-                    background:item.accent, color:item.accent === 'var(--joy-orange)' ? '#fff' : 'var(--joy-grafite)',
+                    background:item.accent, color:'#fff',
                     fontFamily:'var(--font-display)', fontWeight:800, fontSize:'9px',
                     letterSpacing:'0.12em', textTransform:'uppercase', padding:'4px 10px', borderRadius:'100px',
                   }}>{item.tag}</div>
+                  {/* Bottom accent line */}
+                  <div style={{
+                    position:'absolute', bottom:0, left:0, right:0, height:'3px',
+                    background:`linear-gradient(to right, ${item.icon}, ${item.icon}40)`,
+                  }} />
                 </div>
                 <div style={{ padding:'20px 22px' }}>
                   <h4 style={{ fontFamily:'var(--font-display)', fontWeight:800, fontSize:'16px', color:'var(--joy-grafite)', marginBottom:'6px' }}>{item.name}</h4>

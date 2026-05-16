@@ -1,5 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
+import Logo from './Logo';
 
 const links = [
   { label: 'Manifesto', href: '#manifesto' },
@@ -37,12 +38,8 @@ export default function Navbar() {
       }}>
         {/* Logo */}
         <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>
-          <span style={{ fontFamily: 'var(--font-display)', fontSize: '22px', fontWeight: 900, letterSpacing: '-0.01em' }}>
-            <span style={{ color: 'var(--joy-orange)' }}>Joy</span>
-            <span style={{ color: 'var(--joy-grafite)' }}>Y</span>
-            <span style={{ color: 'var(--joy-green-dk)' }}>eat</span>
-          </span>
+          style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, lineHeight: 0 }}>
+          <Logo size={28} />
         </button>
 
         {/* Desktop links */}
