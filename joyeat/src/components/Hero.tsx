@@ -1,389 +1,174 @@
 'use client';
-
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function Hero() {
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const subRef = useRef<HTMLParagraphElement>(null);
-  const ctaRef = useRef<HTMLDivElement>(null);
   const [loaded, setLoaded] = useState(false);
+  useEffect(() => { const t = setTimeout(() => setLoaded(true), 100); return () => clearTimeout(t); }, []);
 
-  useEffect(() => {
-    const timer = setTimeout(() => setLoaded(true), 300);
-    return () => clearTimeout(timer);
-  }, []);
-
-  const scrollTo = (href: string) => {
-    const el = document.querySelector(href);
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
-  };
+  const go = (href: string) => document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
 
   return (
-    <section
-      id="hero"
-      style={{
-        position: 'relative',
-        height: '100vh',
-        minHeight: '700px',
-        display: 'flex',
-        alignItems: 'center',
-        overflow: 'hidden',
-        background: '#0a0a0a',
-      }}
-    >
-      {/* Cinematic background layers */}
-      <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
-        {/* Main gradient — warm cinematic feel */}
-        <div
-          style={{
-            position: 'absolute',
-            inset: 0,
-            background: 'radial-gradient(ellipse 80% 70% at 65% 50%, rgba(253,105,0,0.12) 0%, transparent 70%)',
-          }}
-        />
-        {/* Organic blob shapes */}
-        <div
-          style={{
-            position: 'absolute',
-            top: '10%',
-            right: '-5%',
-            width: '600px',
-            height: '600px',
-            borderRadius: '50%',
-            background: 'radial-gradient(circle, rgba(136,221,3,0.06) 0%, transparent 70%)',
-            animation: 'float 8s ease-in-out infinite',
-          }}
-        />
-        <div
-          style={{
-            position: 'absolute',
-            bottom: '0%',
-            left: '-10%',
-            width: '500px',
-            height: '500px',
-            borderRadius: '50%',
-            background: 'radial-gradient(circle, rgba(253,105,0,0.08) 0%, transparent 70%)',
-            animation: 'float 10s ease-in-out infinite reverse',
-          }}
-        />
-        {/* Grid overlay */}
-        <div
-          style={{
-            position: 'absolute',
-            inset: 0,
-            backgroundImage: 'linear-gradient(rgba(250,250,250,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(250,250,250,0.02) 1px, transparent 1px)',
-            backgroundSize: '80px 80px',
-          }}
-        />
-        {/* Bottom gradient */}
-        <div
-          style={{
-            position: 'absolute',
-            bottom: 0,
-            left: 0,
-            right: 0,
-            height: '40%',
-            background: 'linear-gradient(to top, #0a0a0a, transparent)',
-          }}
-        />
-      </div>
+    <section id="hero" style={{
+      minHeight: '100vh', background: 'var(--joy-cream)',
+      display: 'flex', flexDirection: 'column', justifyContent: 'center',
+      position: 'relative', overflow: 'hidden', paddingTop: '100px', paddingBottom: '60px',
+    }}>
+      {/* Orange blob top-right */}
+      <div style={{
+        position: 'absolute', top: '-80px', right: '-120px',
+        width: '500px', height: '500px', borderRadius: '50%',
+        background: 'var(--joy-orange)', opacity: 0.08,
+        filter: 'blur(80px)', pointerEvents: 'none',
+      }} />
+      {/* Green blob bottom-left */}
+      <div style={{
+        position: 'absolute', bottom: '-60px', left: '-100px',
+        width: '400px', height: '400px', borderRadius: '50%',
+        background: 'var(--joy-green)', opacity: 0.12,
+        filter: 'blur(60px)', pointerEvents: 'none',
+      }} />
 
-      {/* Floating tag — top */}
-      <div
-        style={{
-          position: 'absolute',
-          top: '140px',
-          left: '50%',
-          transform: loaded ? 'translateX(-50%) translateY(0)' : 'translateX(-50%) translateY(-20px)',
-          zIndex: 2,
-          transition: 'all 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s',
-          opacity: loaded ? 1 : 0,
-        }}
-      >
-        <span className="tag">
-          <span className="pulse-dot" style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--joy-orange)', display: 'inline-block' }} />
-          Inaugurando em Goiânia
-        </span>
-      </div>
+      <div className="container-joy" style={{ position: 'relative', zIndex: 2 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'center' }} className="hero-grid">
 
-      {/* Main content */}
-      <div className="container-joy" style={{ position: 'relative', zIndex: 2, width: '100%' }}>
-        <div style={{ maxWidth: '900px' }}>
-          {/* Pre-headline */}
-          <p
-            style={{
-              fontFamily: 'var(--font-display)',
-              fontSize: '12px',
-              fontWeight: 600,
-              letterSpacing: '0.2em',
-              textTransform: 'uppercase',
-              color: 'var(--joy-orange)',
+          {/* Left content */}
+          <div>
+            <div style={{
               marginBottom: '28px',
-              transition: 'all 1s cubic-bezier(0.16, 1, 0.3, 1) 0.4s',
-              opacity: loaded ? 1 : 0,
-              transform: loaded ? 'translateY(0)' : 'translateY(20px)',
-            }}
-          >
-            JOYGROUP — Ecossistema de Bem-Estar
-          </p>
+              transition: 'all 1s ease 0.1s', opacity: loaded ? 1 : 0, transform: loaded ? 'translateY(0)' : 'translateY(20px)',
+            }}>
+              <span className="tag tag-orange">
+                <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--joy-orange)', display: 'inline-block' }} className="pulse" />
+                Inaugurando em Goiânia
+              </span>
+            </div>
 
-          {/* Main headline */}
-          <h1
-            ref={titleRef}
-            style={{
-              fontFamily: 'var(--font-display)',
-              fontSize: 'clamp(48px, 8vw, 110px)',
-              fontWeight: 800,
-              lineHeight: 0.92,
-              letterSpacing: '-0.02em',
-              color: '#fafafa',
-              marginBottom: '32px',
-              transition: 'all 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.5s',
-              opacity: loaded ? 1 : 0,
-              transform: loaded ? 'translateY(0)' : 'translateY(40px)',
-            }}
-          >
-            A vida real exige
-            <br />
-            <span className="gradient-text-orange">mais do que</span>
-            <br />
-            alimentação.
-          </h1>
+            <h1 style={{
+              fontFamily: 'var(--font-display)', fontWeight: 900,
+              fontSize: 'clamp(44px, 6vw, 88px)', lineHeight: 1.0,
+              letterSpacing: '-0.025em', color: 'var(--joy-grafite)',
+              marginBottom: '28px',
+              transition: 'all 1.1s ease 0.25s', opacity: loaded ? 1 : 0, transform: loaded ? 'translateY(0)' : 'translateY(30px)',
+            }}>
+              Em tempo<br />
+              <span style={{ color: 'var(--joy-orange)' }}>de comer</span><br />
+              bem.
+            </h1>
 
-          {/* Subheadline */}
-          <p
-            ref={subRef}
-            style={{
-              fontFamily: 'var(--font-body)',
-              fontSize: 'clamp(16px, 2vw, 20px)',
-              fontWeight: 300,
-              lineHeight: 1.7,
-              color: 'rgba(250,250,250,0.6)',
-              maxWidth: '520px',
-              marginBottom: '48px',
-              transition: 'all 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.7s',
-              opacity: loaded ? 1 : 0,
-              transform: loaded ? 'translateY(0)' : 'translateY(30px)',
-            }}
-          >
-            Comida de verdade. Performance. Comunidade.
-            <br />
-            Bem-estar. Tudo conectado.
-          </p>
+            <p style={{
+              fontFamily: 'var(--font-body)', fontSize: '17px', fontWeight: 300,
+              lineHeight: 1.75, color: 'var(--joy-gray)', maxWidth: '420px', marginBottom: '40px',
+              transition: 'all 1.1s ease 0.4s', opacity: loaded ? 1 : 0, transform: loaded ? 'translateY(0)' : 'translateY(20px)',
+            }}>
+              Fast food de comida de verdade. Rápido, gostoso e sem esforço mental.
+              Feito para quem tem rotina real.
+            </p>
 
-          {/* CTAs */}
-          <div
-            ref={ctaRef}
-            style={{
-              display: 'flex',
-              gap: '16px',
-              flexWrap: 'wrap',
-              transition: 'all 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.9s',
-              opacity: loaded ? 1 : 0,
-              transform: loaded ? 'translateY(0)' : 'translateY(30px)',
-            }}
-          >
-            <button className="btn-primary" onClick={() => scrollTo('#joyeat')}>
-              Conheça a JOYEAT
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
-            </button>
-            <button className="btn-outline" onClick={() => scrollTo('#construcao')}>
-              Acompanhe a construção
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* Right side — visual element */}
-      <div
-        style={{
-          position: 'absolute',
-          right: 0,
-          top: '50%',
-          transform: 'translateY(-50%)',
-          width: '45%',
-          height: '80%',
-          zIndex: 1,
-          transition: 'all 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.6s',
-          opacity: loaded ? 1 : 0,
-        }}
-        className="hidden-mobile"
-      >
-        {/* Cinematic food/lifestyle visual */}
-        <div
-          style={{
-            position: 'absolute',
-            inset: 0,
-            borderRadius: '32px 0 0 32px',
-            overflow: 'hidden',
-            background: 'linear-gradient(135deg, rgba(253,105,0,0.08) 0%, rgba(136,221,3,0.05) 100%)',
-            border: '1px solid rgba(255,255,255,0.04)',
-            borderRight: 'none',
-          }}
-        >
-          {/* Abstract food shapes */}
-          <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            {/* Plate circle */}
-            <div
-              style={{
-                width: '340px',
-                height: '340px',
-                borderRadius: '50%',
-                border: '1px solid rgba(253,105,0,0.15)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                animation: 'float 8s ease-in-out infinite',
-              }}
-            >
-              <div
-                style={{
-                  width: '280px',
-                  height: '280px',
-                  borderRadius: '50%',
-                  background: 'radial-gradient(circle at 40% 40%, rgba(253,105,0,0.2), rgba(136,221,3,0.1), transparent)',
-                  border: '1px solid rgba(253,105,0,0.1)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-              >
-                <div
-                  style={{
-                    width: '180px',
-                    height: '180px',
-                    borderRadius: '50%',
-                    background: 'radial-gradient(circle at 35% 35%, rgba(253,105,0,0.35), rgba(136,221,3,0.15))',
-                  }}
-                />
-              </div>
+            <div style={{
+              display: 'flex', gap: '14px', flexWrap: 'wrap',
+              transition: 'all 1.1s ease 0.55s', opacity: loaded ? 1 : 0, transform: loaded ? 'translateY(0)' : 'translateY(20px)',
+            }}>
+              <button className="btn-orange" onClick={() => go('#joyeat')}>
+                Conheça a Joyeat
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </button>
+              <button className="btn-outline-dark" onClick={() => go('#construcao')}>
+                Acompanhe a obra
+              </button>
             </div>
           </div>
 
-          {/* Floating elements */}
-          {[
-            { top: '15%', left: '10%', delay: '0s', size: 60, color: 'rgba(136,221,3,0.3)' },
-            { top: '75%', left: '20%', delay: '2s', size: 40, color: 'rgba(253,105,0,0.3)' },
-            { top: '20%', right: '15%', delay: '1s', size: 50, color: 'rgba(253,105,0,0.2)' },
-            { top: '65%', right: '10%', delay: '3s', size: 35, color: 'rgba(136,221,3,0.2)' },
-          ].map((el, i) => (
-            <div
-              key={i}
-              style={{
-                position: 'absolute',
-                top: el.top,
-                left: 'left' in el ? el.left : undefined,
-                right: 'right' in el ? (el as { right: string }).right : undefined,
-                width: el.size,
-                height: el.size,
-                borderRadius: '50%',
-                background: el.color,
-                filter: 'blur(1px)',
-                animation: `float ${6 + i}s ease-in-out infinite`,
-                animationDelay: el.delay,
-              }}
-            />
-          ))}
+          {/* Right — visual */}
+          <div className="hide-mobile" style={{ position: 'relative' }}>
+            {/* Main circle */}
+            <div className="float" style={{
+              width: '420px', height: '420px', borderRadius: '50%',
+              background: 'linear-gradient(135deg, var(--joy-orange) 0%, #ff9a3c 100%)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              position: 'relative', margin: '0 auto',
+              boxShadow: '0 40px 100px rgba(253,105,0,0.25)',
+            }}>
+              {/* Logo inside circle */}
+              <div style={{ textAlign: 'center' }}>
+                <div style={{
+                  fontFamily: 'var(--font-display)', fontWeight: 900, fontSize: '72px',
+                  lineHeight: 1, color: '#fff', letterSpacing: '-0.02em',
+                }}>
+                  Jo<span style={{ display: 'inline-block', transform: 'scaleX(-1)', color: 'rgba(255,255,255,0.8)' }}>ʎ</span>
+                </div>
+                <div style={{
+                  fontFamily: 'var(--font-display)', fontWeight: 400, fontSize: '32px',
+                  color: 'rgba(255,255,255,0.85)', letterSpacing: '0.04em',
+                }}>
+                  eat
+                </div>
+                <div style={{
+                  fontFamily: 'var(--font-body)', fontSize: '11px', fontWeight: 300,
+                  color: 'rgba(255,255,255,0.65)', letterSpacing: '0.15em', textTransform: 'uppercase',
+                  marginTop: '12px',
+                }}>
+                  Em tempo de comer bem
+                </div>
+              </div>
+            </div>
 
-          {/* Stats overlay */}
-          <div
-            style={{
-              position: 'absolute',
-              bottom: '40px',
-              left: '30px',
-              right: '30px',
-              display: 'flex',
-              gap: '12px',
-            }}
-          >
+            {/* Floating chips */}
             {[
-              { num: '3', label: 'Marcas do ecossistema' },
-              { num: '4', label: 'Fundadoras' },
-              { num: '∞', label: 'Razões para comer bem' },
-            ].map((stat, i) => (
-              <div
-                key={i}
-                style={{
-                  flex: 1,
-                  padding: '16px',
-                  background: 'rgba(10,10,10,0.7)',
-                  backdropFilter: 'blur(10px)',
-                  borderRadius: '16px',
-                  border: '1px solid rgba(255,255,255,0.06)',
-                  textAlign: 'center',
-                }}
-              >
-                <div
-                  style={{
-                    fontFamily: 'var(--font-display)',
-                    fontSize: '24px',
-                    fontWeight: 800,
-                    color: 'var(--joy-orange)',
-                  }}
-                >
-                  {stat.num}
-                </div>
-                <div
-                  style={{
-                    fontFamily: 'var(--font-body)',
-                    fontSize: '10px',
-                    color: 'rgba(250,250,250,0.4)',
-                    lineHeight: 1.4,
-                    marginTop: '4px',
-                  }}
-                >
-                  {stat.label}
-                </div>
+              { text: '⚡ Rápido', top: '8%', left: '-8%', bg: 'var(--joy-green)', color: 'var(--joy-grafite)', delay: '0s' },
+              { text: '🌿 Comida real', top: '20%', right: '-12%', bg: '#fff', color: 'var(--joy-grafite)', delay: '0.5s' },
+              { text: '😊 Sem culpa', bottom: '25%', left: '-10%', bg: 'var(--joy-yellow)', color: 'var(--joy-grafite)', delay: '1s' },
+              { text: '✓ Transparente', bottom: '10%', right: '-8%', bg: 'var(--joy-grafite)', color: '#fff', delay: '1.5s' },
+            ].map((chip, i) => (
+              <div key={i} style={{
+                position: 'absolute', top: chip.top, bottom: chip.bottom,
+                left: (chip as { left?: string }).left, right: (chip as { right?: string }).right,
+                background: chip.bg, color: chip.color,
+                padding: '10px 18px', borderRadius: '100px',
+                fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '13px',
+                boxShadow: '0 8px 24px rgba(22,22,22,0.12)',
+                animation: `float ${5 + i}s ease-in-out infinite`,
+                animationDelay: chip.delay,
+              }}>
+                {chip.text}
               </div>
             ))}
           </div>
         </div>
+
+        {/* Bottom stats */}
+        <div style={{
+          display: 'flex', gap: '48px', marginTop: '80px', paddingTop: '48px',
+          borderTop: '1px solid rgba(22,22,22,0.08)',
+          transition: 'all 1.1s ease 0.7s', opacity: loaded ? 1 : 0, transform: loaded ? 'translateY(0)' : 'translateY(20px)',
+          flexWrap: 'wrap',
+        }}>
+          {[
+            { val: '100%', label: 'Comida de verdade' },
+            { val: '<5min', label: 'Tempo de preparo' },
+            { val: '6+', label: 'Perfis alimentares' },
+            { val: '0', label: 'Ingredientes escondidos' },
+          ].map((s, i) => (
+            <div key={i}>
+              <div style={{ fontFamily: 'var(--font-display)', fontSize: '28px', fontWeight: 900, color: 'var(--joy-orange)' }}>{s.val}</div>
+              <div style={{ fontFamily: 'var(--font-body)', fontSize: '13px', color: 'var(--joy-gray-lt)', marginTop: '2px' }}>{s.label}</div>
+            </div>
+          ))}
+        </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div
-        style={{
-          position: 'absolute',
-          bottom: '40px',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          zIndex: 2,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: '8px',
-          transition: 'all 1.2s ease 1.2s',
-          opacity: loaded ? 1 : 0,
-        }}
-      >
-        <span
-          style={{
-            fontFamily: 'var(--font-body)',
-            fontSize: '10px',
-            letterSpacing: '0.15em',
-            textTransform: 'uppercase',
-            color: 'rgba(250,250,250,0.3)',
-          }}
-        >
-          Role para baixo
-        </span>
-        <div
-          style={{
-            width: '1px',
-            height: '40px',
-            background: 'linear-gradient(to bottom, rgba(253,105,0,0.8), transparent)',
-            animation: 'pulse-dot 2s ease-in-out infinite',
-          }}
-        />
+      {/* Scroll cue */}
+      <div style={{
+        position: 'absolute', bottom: '32px', left: '50%', transform: 'translateX(-50%)',
+        display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px',
+        transition: 'opacity 1s ease 1.2s', opacity: loaded ? 1 : 0,
+      }}>
+        <span style={{ fontFamily: 'var(--font-body)', fontSize: '10px', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--joy-gray-lt)' }}>Scroll</span>
+        <div style={{ width: '1px', height: '36px', background: 'linear-gradient(to bottom, var(--joy-orange), transparent)' }} />
       </div>
 
       <style>{`
-        @media (max-width: 768px) {
-          .hidden-mobile { display: none !important; }
-        }
-      `}</style>
+        @media(max-width:900px){.hero-grid{grid-template-columns:1fr!important;}}`}
+      </style>
     </section>
   );
 }

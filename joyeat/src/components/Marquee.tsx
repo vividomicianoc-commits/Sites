@@ -1,65 +1,34 @@
 'use client';
 
 const words = [
-  'FAST CASUAL SAUDÁVEL',
-  'COMIDA DE VERDADE',
-  'EM TEMPO DE COMER BEM',
-  'GOIÂNIA',
-  'JOYEAT',
-  'SEM RADICALISMO',
-  'SEM ESFORÇO MENTAL',
-  'JOYBODY',
-  'JOYPOWER',
-  'ALIMENTAÇÃO REAL',
+  'Em tempo de comer bem',
+  'Comida de verdade',
+  'Fast casual saudável',
+  'Joyeat',
+  'Goiânia',
+  'Sem esforço mental',
+  'Transparência total',
+  'Sabor real',
+  'Sem radicalismo',
+  'Alimentação para rotina real',
 ];
 
-export default function Marquee({ reverse = false }: { reverse?: boolean }) {
+export default function Marquee({ bg = 'var(--joy-orange)', color = '#fff', reverse = false }: { bg?: string; color?: string; reverse?: boolean }) {
   const doubled = [...words, ...words];
-
   return (
-    <div
-      style={{
-        overflow: 'hidden',
-        padding: '20px 0',
-        borderTop: '1px solid rgba(255,255,255,0.04)',
-        borderBottom: '1px solid rgba(255,255,255,0.04)',
-        background: 'rgba(255,255,255,0.01)',
-      }}
-    >
-      <div
-        className="marquee-track"
-        style={{
-          animation: `marquee ${reverse ? '25s' : '20s'} linear infinite ${reverse ? 'reverse' : ''}`,
-        }}
-      >
-        {doubled.map((word, i) => (
-          <span
-            key={i}
-            style={{
-              fontFamily: 'var(--font-display)',
-              fontSize: '13px',
-              fontWeight: 700,
-              letterSpacing: '0.15em',
-              textTransform: 'uppercase',
-              color: i % 3 === 0 ? 'var(--joy-orange)' : i % 3 === 1 ? 'rgba(250,250,250,0.2)' : 'var(--joy-green)',
-              whiteSpace: 'nowrap',
-              marginRight: '60px',
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '60px',
-            }}
-          >
-            {word}
-            <span
-              style={{
-                width: '4px',
-                height: '4px',
-                borderRadius: '50%',
-                background: 'rgba(255,255,255,0.15)',
-                display: 'inline-block',
-                flexShrink: 0,
-              }}
-            />
+    <div style={{ background: bg, overflow: 'hidden', padding: '16px 0' }}>
+      <div className="marquee-track" style={{
+        animation: `marquee 24s linear infinite ${reverse ? 'reverse' : ''}`,
+      }}>
+        {doubled.map((w, i) => (
+          <span key={i} style={{
+            fontFamily: 'var(--font-display)', fontSize: '14px', fontWeight: 800,
+            letterSpacing: '0.12em', textTransform: 'uppercase', color,
+            whiteSpace: 'nowrap', marginRight: '56px',
+            display: 'inline-flex', alignItems: 'center', gap: '56px',
+          }}>
+            {w}
+            <span style={{ width: 5, height: 5, borderRadius: '50%', background: color, opacity: 0.4, flexShrink: 0 }} />
           </span>
         ))}
       </div>

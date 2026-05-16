@@ -1,177 +1,95 @@
 'use client';
-
 import { useEffect, useRef, useState } from 'react';
-
-const manifestoLines = [
-  { text: 'As pessoas querem comer bem.', accent: false },
-  { text: 'O problema nunca foi a intenção.', accent: false },
-  { text: 'Foi a vida real.', accent: true },
-  { text: 'A correria. O cansaço mental. As escolhas que cansam.', accent: false },
-  { text: 'Comer bem precisa ser viável.', accent: true },
-  { text: 'Escolher o que comer não deveria gerar dúvida.', accent: false },
-  { text: 'Somos o ponto de equilíbrio entre tempo e cuidado.', accent: false },
-  { text: 'Ainda dá tempo.', accent: true },
-  { text: 'Em tempo de comer bem.', accent: true },
-];
 
 function useInView(threshold = 0.2) {
   const ref = useRef<HTMLDivElement>(null);
   const [inView, setInView] = useState(false);
-
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setInView(true);
-      },
-      { threshold }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
+    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setInView(true); }, { threshold });
+    if (ref.current) obs.observe(ref.current);
+    return () => obs.disconnect();
   }, [threshold]);
-
   return { ref, inView };
 }
 
-function ManifestoLine({ text, accent, index }: { text: string; accent: boolean; index: number }) {
-  const { ref, inView } = useInView(0.3);
+const lines = [
+  { text: 'Acreditamos que alimentar é um gesto de cuidado.', bold: false },
+  { text: 'Não apenas com o corpo.', bold: false },
+  { text: 'Mas com o dia que ainda precisa acontecer.', bold: false },
+  { text: 'Comida não é só combustível.', bold: true },
+  { text: 'É energia que sustenta o dia.', bold: false },
+  { text: 'É presença no meio da correria.', bold: false },
+  { text: 'Comer bem precisa ser viável.', bold: true },
+  { text: 'Parte da rotina. Parte da vida real.', bold: false },
+  { text: 'Ainda dá tempo.', bold: true },
+  { text: 'Tempo de comer bem.', bold: true },
+];
 
+function Line({ text, bold, index }: { text: string; bold: boolean; index: number }) {
+  const { ref, inView } = useInView(0.5);
   return (
-    <div
-      ref={ref}
-      style={{
-        overflow: 'hidden',
-        padding: '4px 0',
-      }}
-    >
-      <p
-        style={{
-          fontFamily: 'var(--font-display)',
-          fontSize: 'clamp(22px, 4vw, 52px)',
-          fontWeight: accent ? 800 : 400,
-          lineHeight: 1.2,
-          color: accent ? '#fafafa' : 'rgba(250,250,250,0.35)',
-          transition: `all 1s cubic-bezier(0.16, 1, 0.3, 1) ${index * 0.08}s`,
-          transform: inView ? 'translateY(0)' : 'translateY(100%)',
-          opacity: inView ? 1 : 0,
-        }}
-      >
-        {accent ? (
-          <span className="gradient-text-orange">{text}</span>
-        ) : text}
+    <div ref={ref} style={{ overflow: 'hidden', paddingBottom: '6px' }}>
+      <p style={{
+        fontFamily: 'var(--font-display)',
+        fontSize: bold ? 'clamp(24px, 4vw, 56px)' : 'clamp(18px, 3vw, 40px)',
+        fontWeight: bold ? 900 : 400,
+        lineHeight: 1.2,
+        color: bold ? 'var(--joy-grafite)' : 'rgba(22,22,22,0.35)',
+        transition: `all 0.9s cubic-bezier(0.16,1,0.3,1) ${index * 0.07}s`,
+        transform: inView ? 'translateY(0)' : 'translateY(100%)',
+        opacity: inView ? 1 : 0,
+      }}>
+        {text}
       </p>
     </div>
   );
 }
 
 export default function Manifesto() {
-  const { ref: sectionRef, inView: sectionInView } = useInView(0.1);
+  const { ref, inView } = useInView(0.1);
 
   return (
-    <section
-      id="manifesto"
-      ref={sectionRef}
-      style={{
-        padding: '160px 0',
-        background: 'var(--joy-black)',
-        position: 'relative',
-        overflow: 'hidden',
-      }}
-    >
-      {/* Background elements */}
-      <div
-        style={{
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          width: '800px',
-          height: '800px',
-          borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(253,105,0,0.04) 0%, transparent 70%)',
-          pointerEvents: 'none',
-        }}
-      />
+    <section id="manifesto" style={{ background: 'var(--joy-cream)', padding: '140px 0', position: 'relative', overflow: 'hidden' }}>
+      {/* Orange accent block */}
+      <div style={{
+        position: 'absolute', right: 0, top: '10%', width: '6px', height: '60%',
+        background: 'linear-gradient(to bottom, transparent, var(--joy-orange), transparent)',
+        borderRadius: '4px 0 0 4px',
+      }} />
 
       <div className="container-joy">
-        {/* Tag */}
-        <div
-          style={{
-            marginBottom: '80px',
-            transition: 'all 1s ease 0.1s',
-            opacity: sectionInView ? 1 : 0,
-            transform: sectionInView ? 'translateY(0)' : 'translateY(20px)',
-          }}
-        >
-          <span className="tag">Manifesto</span>
+        <div ref={ref} style={{
+          marginBottom: '72px',
+          transition: 'all 1s ease',
+          opacity: inView ? 1 : 0, transform: inView ? 'translateY(0)' : 'translateY(24px)',
+        }}>
+          <span className="tag tag-orange" style={{ marginBottom: '20px', display: 'inline-flex' }}>Manifesto</span>
+          <p style={{ fontFamily: 'var(--font-body)', fontSize: '14px', color: 'var(--joy-gray-lt)', maxWidth: '400px', lineHeight: 1.6 }}>
+            Por que a Joyeat existe. Em palavras honestas.
+          </p>
         </div>
 
-        {/* Manifesto lines */}
-        <div style={{ maxWidth: '900px' }}>
-          {manifestoLines.map((line, i) => (
-            <ManifestoLine key={i} text={line.text} accent={line.accent} index={i} />
-          ))}
+        <div style={{ maxWidth: '860px' }}>
+          {lines.map((l, i) => <Line key={i} {...l} index={i} />)}
         </div>
 
-        {/* Divider + assinatura */}
-        <div
-          style={{
-            marginTop: '80px',
-            paddingTop: '60px',
-            borderTop: '1px solid rgba(255,255,255,0.06)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            flexWrap: 'wrap',
-            gap: '32px',
-            transition: 'all 1s ease 0.5s',
-            opacity: sectionInView ? 1 : 0,
-            transform: sectionInView ? 'translateY(0)' : 'translateY(20px)',
-          }}
-        >
+        {/* Signature */}
+        <div style={{
+          marginTop: '80px', paddingTop: '56px',
+          borderTop: '1.5px solid rgba(22,22,22,0.08)',
+          display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '24px',
+        }}>
           <div>
-            <p
-              style={{
-                fontFamily: 'var(--font-display)',
-                fontSize: '13px',
-                fontWeight: 600,
-                letterSpacing: '0.12em',
-                textTransform: 'uppercase',
-                color: 'var(--joy-orange)',
-                marginBottom: '8px',
-              }}
-            >
-              JOYGROUP
-            </p>
-            <p
-              style={{
-                fontFamily: 'var(--font-body)',
-                fontSize: '14px',
-                color: 'rgba(250,250,250,0.4)',
-              }}
-            >
-              Goiânia, 2024 — Em construção
-            </p>
+            <div style={{ fontFamily: 'var(--font-display)', fontWeight: 900, fontSize: '20px', color: 'var(--joy-grafite)', marginBottom: '4px' }}>
+              <span style={{ color: 'var(--joy-orange)' }}>Joy</span>
+              <span>Y</span>
+              <span style={{ color: 'var(--joy-green-dk)' }}>eat</span>
+            </div>
+            <p style={{ fontFamily: 'var(--font-body)', fontSize: '12px', color: 'var(--joy-gray-lt)' }}>Goiânia, 2024 — Em construção</p>
           </div>
-
-          {/* The problem section */}
-          <div
-            style={{
-              maxWidth: '420px',
-            }}
-          >
-            <p
-              style={{
-                fontFamily: 'var(--font-body)',
-                fontSize: '15px',
-                lineHeight: 1.8,
-                color: 'rgba(250,250,250,0.45)',
-              }}
-            >
-              Fast casual saudável pensado para a rotina real:
-              rápido, gostoso e sem esforço mental.
-              Sem radicalismo. Sem gourmetização. Sem complicação.
-            </p>
-          </div>
+          <p style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(16px, 2.5vw, 26px)', fontWeight: 900, color: 'var(--joy-orange)', maxWidth: '360px' }}>
+            &ldquo;Em tempo de comer bem.&rdquo;
+          </p>
         </div>
       </div>
     </section>

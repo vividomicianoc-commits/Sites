@@ -1,12 +1,11 @@
 'use client';
-
 import { useState, useEffect } from 'react';
 
-const navLinks = [
+const links = [
   { label: 'Manifesto', href: '#manifesto' },
-  { label: 'JOYEAT', href: '#joyeat' },
-  { label: 'Ecossistema', href: '#ecossistema' },
-  { label: 'Fundadoras', href: '#fundadoras' },
+  { label: 'Conceito', href: '#joyeat' },
+  { label: 'Transparência', href: '#transparencia' },
+  { label: 'Quem somos', href: '#fundadoras' },
   { label: 'Construção', href: '#construcao' },
 ];
 
@@ -15,178 +14,101 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 60);
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    const fn = () => setScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', fn, { passive: true });
+    return () => window.removeEventListener('scroll', fn);
   }, []);
 
-  const scrollTo = (href: string) => {
+  const go = (href: string) => {
     setMenuOpen(false);
-    const el = document.querySelector(href);
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
     <>
-      <nav
-        style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          right: 0,
-          zIndex: 1000,
-          padding: scrolled ? '16px 40px' : '28px 40px',
-          background: scrolled ? 'rgba(10,10,10,0.92)' : 'transparent',
-          backdropFilter: scrolled ? 'blur(20px)' : 'none',
-          borderBottom: scrolled ? '1px solid rgba(255,255,255,0.05)' : 'none',
-          transition: 'all 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-        }}
-      >
+      <nav style={{
+        position: 'fixed', top: 0, left: 0, right: 0, zIndex: 1000,
+        padding: scrolled ? '14px 48px' : '24px 48px',
+        background: scrolled ? 'rgba(250,248,243,0.95)' : 'transparent',
+        backdropFilter: scrolled ? 'blur(16px)' : 'none',
+        borderBottom: scrolled ? '1px solid rgba(22,22,22,0.06)' : 'none',
+        transition: 'all 0.4s cubic-bezier(0.16,1,0.3,1)',
+        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+      }}>
         {/* Logo */}
-        <a
-          href="#"
-          onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-          style={{
-            fontFamily: 'var(--font-display)',
-            fontSize: '20px',
-            fontWeight: 800,
-            letterSpacing: '0.1em',
-            color: '#fafafa',
-            textDecoration: 'none',
-          }}
-        >
-          JOY<span style={{ color: 'var(--joy-orange)' }}>GROUP</span>
-        </a>
+        <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>
+          <span style={{ fontFamily: 'var(--font-display)', fontSize: '22px', fontWeight: 900, letterSpacing: '-0.01em' }}>
+            <span style={{ color: 'var(--joy-orange)' }}>Joy</span>
+            <span style={{ color: 'var(--joy-grafite)' }}>Y</span>
+            <span style={{ color: 'var(--joy-green-dk)' }}>eat</span>
+          </span>
+        </button>
 
-        {/* Desktop nav */}
-        <div style={{ display: 'flex', gap: '36px', alignItems: 'center' }} className="hidden-mobile">
-          {navLinks.map((link) => (
-            <button
-              key={link.label}
-              onClick={() => scrollTo(link.href)}
+        {/* Desktop links */}
+        <div style={{ display: 'flex', gap: '32px', alignItems: 'center' }} className="hide-mobile">
+          {links.map(l => (
+            <button key={l.label} onClick={() => go(l.href)}
               style={{
-                background: 'none',
-                border: 'none',
-                color: 'rgba(250,250,250,0.65)',
-                fontFamily: 'var(--font-body)',
-                fontSize: '13px',
-                fontWeight: 500,
-                letterSpacing: '0.06em',
-                cursor: 'pointer',
-                transition: 'color 0.3s ease',
-                padding: 0,
+                background: 'none', border: 'none', cursor: 'pointer', padding: 0,
+                fontFamily: 'var(--font-body)', fontSize: '13.5px', fontWeight: 500,
+                color: 'var(--joy-gray)', transition: 'color 0.2s ease',
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = '#fafafa')}
-              onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(250,250,250,0.65)')}
-            >
-              {link.label}
+              onMouseEnter={e => (e.currentTarget.style.color = 'var(--joy-grafite)')}
+              onMouseLeave={e => (e.currentTarget.style.color = 'var(--joy-gray)')}>
+              {l.label}
             </button>
           ))}
-          <button
-            onClick={() => scrollTo('#comunidade')}
-            className="btn-primary"
-            style={{ fontSize: '12px', padding: '10px 24px' }}
-          >
+          <button className="btn-orange" onClick={() => go('#comunidade')}
+            style={{ fontSize: '12px', padding: '10px 22px' }}>
             Acompanhe
           </button>
         </div>
 
-        {/* Mobile hamburger */}
-        <button
-          className="show-mobile"
-          onClick={() => setMenuOpen(!menuOpen)}
-          style={{
-            background: 'none',
-            border: 'none',
-            cursor: 'pointer',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '5px',
-            padding: '4px',
-          }}
-        >
-          {[0, 1, 2].map((i) => (
-            <span
-              key={i}
-              style={{
-                display: 'block',
-                width: '22px',
-                height: '1.5px',
-                background: '#fafafa',
-                transition: 'all 0.3s ease',
-                transform: menuOpen
-                  ? i === 0 ? 'rotate(45deg) translate(4.5px, 4.5px)'
-                    : i === 1 ? 'scaleX(0)'
-                      : 'rotate(-45deg) translate(4.5px, -4.5px)'
-                  : 'none',
-              }}
-            />
+        {/* Hamburger */}
+        <button className="show-mobile" onClick={() => setMenuOpen(!menuOpen)}
+          style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '4px', display: 'flex', flexDirection: 'column', gap: '5px' }}>
+          {[0,1,2].map(i => (
+            <span key={i} style={{
+              display: 'block', width: '22px', height: '2px',
+              background: 'var(--joy-grafite)', borderRadius: '2px',
+              transition: 'all 0.3s ease',
+              transform: menuOpen
+                ? i===0 ? 'rotate(45deg) translate(4.5px,4.5px)'
+                  : i===1 ? 'scaleX(0)' : 'rotate(-45deg) translate(4.5px,-4.5px)'
+                : 'none',
+            }} />
           ))}
         </button>
       </nav>
 
-      {/* Mobile menu */}
-      <div
-        style={{
-          position: 'fixed',
-          inset: 0,
-          zIndex: 999,
-          background: 'rgba(10,10,10,0.98)',
-          backdropFilter: 'blur(20px)',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          gap: '40px',
-          transition: 'opacity 0.5s ease, visibility 0.5s ease',
-          opacity: menuOpen ? 1 : 0,
-          visibility: menuOpen ? 'visible' : 'hidden',
-        }}
-      >
-        {navLinks.map((link, i) => (
-          <button
-            key={link.label}
-            onClick={() => scrollTo(link.href)}
+      {/* Mobile overlay */}
+      <div style={{
+        position: 'fixed', inset: 0, zIndex: 999,
+        background: 'var(--joy-cream)',
+        display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '36px',
+        transition: 'opacity 0.4s ease, visibility 0.4s ease',
+        opacity: menuOpen ? 1 : 0, visibility: menuOpen ? 'visible' : 'hidden',
+      }}>
+        {links.map((l, i) => (
+          <button key={l.label} onClick={() => go(l.href)}
             style={{
-              background: 'none',
-              border: 'none',
-              color: '#fafafa',
-              fontFamily: 'var(--font-display)',
-              fontSize: '28px',
-              fontWeight: 700,
-              letterSpacing: '0.05em',
-              cursor: 'pointer',
+              background: 'none', border: 'none', cursor: 'pointer',
+              fontFamily: 'var(--font-display)', fontSize: '28px', fontWeight: 800,
+              color: 'var(--joy-grafite)',
               transition: `all 0.4s ease ${i * 0.05}s`,
-              transform: menuOpen ? 'translateY(0)' : 'translateY(20px)',
               opacity: menuOpen ? 1 : 0,
-            }}
-          >
-            {link.label}
+              transform: menuOpen ? 'translateY(0)' : 'translateY(20px)',
+            }}>
+            {l.label}
           </button>
         ))}
-        <button
-          onClick={() => scrollTo('#comunidade')}
-          className="btn-primary"
-          style={{ marginTop: '20px' }}
-        >
+        <button className="btn-orange" onClick={() => go('#comunidade')} style={{ marginTop: '12px' }}>
           Acompanhe a construção
         </button>
       </div>
 
-      <style>{`
-        @media (max-width: 768px) {
-          .hidden-mobile { display: none !important; }
-        }
-        @media (min-width: 769px) {
-          .show-mobile { display: none !important; }
-        }
-        @media (max-width: 768px) {
-          nav { padding: 20px 24px !important; }
-        }
-      `}</style>
+      <style>{`@media(max-width:768px){nav{padding:16px 24px!important}}`}</style>
     </>
   );
 }
