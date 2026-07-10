@@ -33,7 +33,7 @@ npx serve .      # ou: python3 -m http.server 8000
 Deploy estático (GitHub Pages, Netlify, Vercel). Não há build.
 
 ## A fazer (pendências de conteúdo)
-- [ ] Vídeo do hero (full-screen) → `assets/hero.mp4` + trocar o bloco `.hero-video`
+- [x] Vídeo do hero (full-screen) → `assets/hero.mp4` (+ `assets/hero-poster.jpg`) já no `<video>` do `.hero-video`
 - [ ] Fotos reais dos produtos (PNG recortado) no cardápio/loja
 - [ ] Adesivos originais da marca (as frases) — arquivos do Drive
 - [ ] Logo da Joy Power / Joy Group (quando existirem)
