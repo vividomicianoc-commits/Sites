@@ -259,8 +259,8 @@ footer{padding:3.2rem 0 3.6rem;position:relative;overflow:hidden}
 .pw2 p{color:var(--ink-soft);font-size:.92rem}
 
 /* ===== CAMADA VIVA (assets originais do Drive) ===== */
-#bgflow{position:fixed;inset:0;z-index:-1;pointer-events:none;background-color:var(--paper);background-repeat:no-repeat;
-  background-image:radial-gradient(90% 70% at 50% -10%,rgba(250,185,0,.045),transparent 60%);
+#bgflow{position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:linear-gradient(180deg,#FCFBF8 0%,#F8F5EF 55%,#F4F0E8 100%);
   will-change:transform}
 /* rostinho-personagem: assinatura viva que percorre a página */
 .character{position:fixed;z-index:0;pointer-events:none;right:-9vw;top:0;width:clamp(360px,46vw,680px);opacity:.06;will-change:transform}
@@ -312,8 +312,8 @@ html.lenis, html.lenis body { height: auto; }
 .mag{transition:transform .3s var(--ease),box-shadow .3s var(--ease),background .25s,color .25s;will-change:transform}
 
 /* stats / contadores */
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin:0 0 2.6rem;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:1.6rem 0}
-@media(max-width:720px){.stats{grid-template-columns:1fr 1fr;gap:1.4rem}}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:0 0 2.6rem;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:1.6rem 0}
+@media(max-width:720px){.stats{grid-template-columns:1fr;gap:1.2rem}}
 .stat .num{font-family:var(--tech);font-weight:700;font-size:clamp(2.1rem,5vw,3.4rem);line-height:1;background:linear-gradient(120deg,var(--laranja),var(--verde));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .stat:nth-child(2) .num{background:linear-gradient(120deg,var(--petroleo),var(--verde));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .stat:nth-child(3) .num{background:linear-gradient(120deg,var(--amarelo),var(--laranja));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
@@ -323,8 +323,9 @@ html.lenis, html.lenis body { height: auto; }
 .value h4{color:var(--vc,var(--musgo))}
 
 /* seção escura de marca (História) */
-.sec.tone-dark{background:var(--musgo);color:var(--paper)}
-.sec.tone-dark .pat{position:absolute;inset:0;background:url("../assets/pattern_b.png") center/520px;opacity:.13;z-index:0}
+.sec.tone-dark{background:radial-gradient(130% 100% at 50% -10%,#48591f 0%,var(--musgo) 58%);color:var(--paper)}
+.sec.tone-dark .pat{display:none}
+.sec.tone-dark .graf{display:none}
 .tone-dark h2,.tone-dark h3,.tone-dark .sec-head h2{color:#fff}
 .tone-dark .idx{color:rgba(251,248,241,.6)}.tone-dark .idx::before{background:rgba(251,248,241,.6)}
 .lead-d{font-family:var(--display);font-weight:500;font-size:clamp(1.15rem,2.2vw,1.6rem);line-height:1.28;max-width:32ch;color:rgba(251,248,241,.86);margin-bottom:2.4rem}
