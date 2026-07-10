@@ -168,6 +168,31 @@
     });
   }
 
+  /* ---------- Hero: texto aparece no fim do vídeo (não polui) ---------- */
+  (function () {
+    var hc = document.querySelector('.hero-copy');
+    var hv = document.querySelector('.hero-video video');
+    var hint = document.getElementById('scrollHint');
+    if (!hc) return;
+    var shown = false;
+    function showHero() {
+      if (shown) return; shown = true;
+      hc.classList.add('show');
+      if (hint) hint.style.opacity = '0';
+    }
+    if (reduce) { showHero(); return; }
+    if (hv) {
+      hv.addEventListener('timeupdate', function () {
+        if (hv.duration && hv.currentTime / hv.duration > 0.6) showHero();
+      });
+    }
+    // fallbacks: se o vídeo não tocar, ou se o usuário rolar
+    setTimeout(showHero, 8500);
+    window.addEventListener('scroll', function () {
+      if (window.scrollY > window.innerHeight * 0.22) showHero();
+    }, { passive: true });
+  })();
+
   /* ---------- Faixas inclinam com a velocidade do scroll ---------- */
   if (!reduce) {
     var skewEls = document.querySelectorAll('[data-skew]');
