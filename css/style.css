@@ -2,7 +2,7 @@
   color-scheme:light;
   --paper:#FBF8F1;--paper-2:#F4EDDF;--card:#FFFFFF;--ink:#161616;--ink-soft:#44433B;--muted:#7A7669;--line:rgba(22,22,22,.12);
   --laranja:#EA5C25;--vermelho:#E53323;--verde:#A2C617;--musgo:#3C4C1E;--amarelo:#FAB900;--petroleo:#03969C;--teal:#3EB397;
-  --display:'Fredoka',ui-rounded,system-ui,sans-serif;--body:'Inter',ui-sans-serif,system-ui,sans-serif;
+  --display:'Outfit',ui-sans-serif,system-ui,sans-serif;--body:'Inter',ui-sans-serif,system-ui,sans-serif;
   --r:16px;--r-lg:30px;--pill:999px;
   --ease:cubic-bezier(.16,1,.3,1);--ease-io:cubic-bezier(.65,0,.35,1);
   --dur:.9s;--maxw:1180px;
@@ -10,8 +10,8 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{font-family:var(--body);background:var(--paper);color:var(--ink);line-height:1.62;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-h1,h2,h3,h4{font-family:var(--display);font-weight:600;line-height:1.04;letter-spacing:-.01em;text-wrap:balance}
-h1,h2{font-weight:700}
+h1,h2,h3,h4{font-family:var(--display);font-weight:700;line-height:1.03;letter-spacing:-.02em;text-wrap:balance}
+h1,h2{font-weight:800}
 p{text-wrap:pretty}a{color:inherit;text-decoration:none}
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(20px,5vw,44px);position:relative;z-index:2}
 .eyebrow{font-family:var(--display);font-weight:600;font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;color:var(--laranja);display:inline-flex;align-items:center;gap:.55em}
@@ -45,7 +45,7 @@ p{text-wrap:pretty}a{color:inherit;text-decoration:none}
 .btn-light{background:#fff;color:var(--ink);border-color:#fff}.btn-light:hover{background:var(--laranja);color:#fff;border-color:var(--laranja)}
 
 /* ============ HERO — vídeo full-screen + storytelling ============ */
-.hero-scroll{position:relative;height:300vh}
+.hero-scroll{position:relative;height:210vh}
 .hero-sticky{position:sticky;top:0;height:100vh;overflow:hidden;background:#0d0c0a}
 .hero-video{position:absolute;inset:0;z-index:0;overflow:hidden;transform-origin:center}
 .hero-video video{width:100%;height:100%;object-fit:cover}
@@ -138,7 +138,7 @@ p{text-wrap:pretty}a{color:inherit;text-decoration:none}
 .sabor{display:grid;grid-template-columns:repeat(2,1fr);gap:1.1rem}@media(max-width:720px){.sabor{grid-template-columns:1fr}}
 .scard{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:1.6rem;display:flex;gap:1rem;align-items:flex-start;transition:transform .3s var(--ease),box-shadow .3s}
 .scard:hover{transform:translateY(-4px);box-shadow:0 16px 32px rgba(22,22,22,.08)}
-.scard .ic{flex:0 0 46px;height:46px;border-radius:14px;background:var(--bg,var(--amarelo));display:grid;place-items:center;font-size:1.4rem;transition:transform .3s var(--ease)}
+.scard .ic{flex:0 0 46px;height:46px;border-radius:14px;background:var(--bg,var(--amarelo));display:grid;place-items:center;font-family:var(--tech);font-weight:700;font-size:1.15rem;color:#fff;transition:transform .3s var(--ease)}
 .scard:hover .ic{transform:rotate(-8deg) scale(1.06)}
 .scard h4{font-size:1.15rem;margin-bottom:.25rem}.scard p{font-size:.93rem;color:var(--ink-soft)}
 
@@ -151,7 +151,7 @@ p{text-wrap:pretty}a{color:inherit;text-decoration:none}
 .prod .ph .tg{font-family:var(--display);font-weight:600;font-size:.62rem;letter-spacing:.06em;text-transform:uppercase;background:rgba(255,255,255,.94);color:var(--ink);padding:.2rem .5rem;border-radius:var(--pill);position:relative;z-index:1}
 .prod .bd{padding:1rem 1.1rem 1.2rem}.prod .bd h4{font-size:1.05rem;margin-bottom:.2rem}.prod .bd p{font-size:.85rem;color:var(--muted)}
 .prod .bd .pr{font-family:var(--display);font-weight:600;color:var(--laranja);margin-top:.5rem}
-.imgnote{font-size:.82rem;color:var(--muted);margin-top:1.2rem;display:flex;align-items:center;gap:.5em}.imgnote::before{content:"📷"}
+.imgnote{font-size:.82rem;color:var(--muted);margin-top:1.2rem;display:flex;align-items:center;gap:.5em}.imgnote::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--laranja);flex:0 0 auto}
 .filters{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:2rem}
 .filters .f{font-family:var(--display);font-weight:500;font-size:.85rem;padding:.4rem 1rem;border-radius:var(--pill);border:1.5px solid var(--line);background:var(--card);cursor:pointer;transition:.2s var(--ease)}
 .filters .f:hover{border-color:var(--laranja);color:var(--laranja)}.filters .f.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
@@ -213,12 +213,12 @@ footer{padding:3.2rem 0 3.6rem;position:relative;overflow:hidden}
 
 /* frase da comunicação rolando (editorial, sobre creme) */
 .phrases{overflow:hidden;white-space:nowrap;padding:clamp(1.4rem,3.4vw,2.6rem) 0;margin:clamp(1rem,3vw,2.4rem) 0;position:relative;z-index:2}
-.ptrack{display:inline-block;animation:mscroll 34s linear infinite;font-family:var(--display);font-weight:700;font-size:clamp(1.9rem,4.4vw,3.6rem);line-height:1}
+.ptrack{display:inline-block;animation:mscroll 40s linear infinite;font-family:var(--display);font-weight:700;font-size:clamp(1.9rem,4.4vw,3.4rem);line-height:1;letter-spacing:.005em}
 .phrases.rev .ptrack{animation-direction:reverse}
 .phrases:hover .ptrack{animation-play-state:paused}
-.ptrack .s{margin:0 .7em;color:var(--ink);white-space:nowrap}
-.ptrack .o{color:transparent;-webkit-text-stroke:1.6px var(--laranja)}
-.ptrack .d{display:inline-block;width:.4em;height:.4em;border-radius:50%;background:var(--verde);margin:0 .95em;vertical-align:.14em}
+.ptrack .s{margin:0 1.2em;color:var(--ink);white-space:nowrap}
+.ptrack .o{color:transparent;-webkit-text-stroke:1.4px var(--laranja);letter-spacing:.02em}
+.ptrack .d{display:inline-block;width:.38em;height:.38em;border-radius:50%;background:var(--verde);margin:0 1.15em;vertical-align:.14em}
 
 /* selos / adesivos girando */
 .stickers{display:flex;gap:clamp(1.6rem,5vw,4.5rem);justify-content:center;align-items:center;flex-wrap:wrap;padding:clamp(2rem,5vw,3.6rem) 0;position:relative;z-index:2}
@@ -295,7 +295,7 @@ html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-stopped { overflow: hidden; }
 
 /* ================= UPGRADE: disrupção, motion & branding ================= */
-:root{--tech:'Space Grotesk',var(--display)}
+:root{--tech:'Outfit',var(--display)}
 
 /* barra de progresso do scroll (topo) */
 .prog{position:fixed;top:0;left:0;height:3px;width:0;z-index:100;background:linear-gradient(90deg,var(--laranja),var(--amarelo),var(--verde),var(--petroleo));box-shadow:0 0 12px rgba(234,92,37,.5)}
@@ -374,3 +374,32 @@ html.lenis, html.lenis body { height: auto; }
   .prog{display:none}
   .marquee::before,.mtrack,.ptrack{animation:none}
 }
+
+/* ============ HERO Joy Group institucional ============ */
+.hero-eyebrow{color:var(--amarelo);margin-bottom:1.1rem;letter-spacing:.22em}
+.hero-copy{bottom:auto;top:50%;transform:translateY(-50%)}
+.stext-wrap{position:relative;min-height:0}
+.hero-copy .stext{position:relative;opacity:1;transform:none;pointer-events:auto;max-width:min(62vw,720px)}
+.hero-copy .stext h1{font-size:clamp(2.2rem,5vw,4rem);font-weight:800;letter-spacing:-.025em}
+.hero-copy .stext p{max-width:52ch;color:rgba(255,255,255,.88);margin-top:1rem}
+.hero-brands{display:flex;gap:2.2rem;margin-top:1.6rem;flex-wrap:wrap;max-width:760px}
+.hbrand{display:flex;flex-direction:column;gap:.15rem;padding-left:.9rem;border-left:3px solid var(--amarelo);max-width:330px}
+.hbrand:nth-child(2){border-left-color:var(--verde)}
+.hbrand b{font-family:var(--display);font-weight:700;font-size:1.1rem;color:#fff}
+.hbrand span{font-size:.92rem;color:rgba(255,255,255,.78);line-height:1.4}
+
+/* ============ Grafismos: variantes de cor do anel tracejado ============ */
+.ring.green{background-image:url("assets/ring_green.png")}
+.ring.musgo{background-image:url("assets/ring_musgo.png")}
+.tone-dark .ring-dec{opacity:.16}
+/* grafismo pontual: anel tracejado que gira devagar ancorado às seções */
+.graf{position:absolute;z-index:0;pointer-events:none;opacity:.14;will-change:transform}
+.graf.sm{width:clamp(150px,16vw,230px);height:clamp(150px,16vw,230px)}
+.graf.lg{width:clamp(280px,34vw,460px);height:clamp(280px,34vw,460px)}
+.tone-dark .graf{opacity:.2}
+/* tira fina de padrão rostinho como acento de borda entre blocos */
+.patline{height:34px;position:relative;overflow:hidden;z-index:2;opacity:.9}
+.patline::before{content:"";position:absolute;inset:-60% 0;background:url("assets/band_a.png") repeat-x;background-size:210px auto;background-position:center;animation:bandslide 30s linear infinite}
+.patline.b::before{background-image:url("assets/band_b.png")}
+
+@media(max-width:560px){.hero-brands{gap:1.1rem}.hbrand{max-width:100%}}
