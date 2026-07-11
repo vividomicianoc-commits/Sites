@@ -435,3 +435,40 @@ html.lenis, html.lenis body { height: auto; }
   .conheca .s1{top:3%;left:2%}.conheca .s2{top:5%;right:2%}
   .conheca .r1,.conheca .r2{opacity:.4}
 }
+
+/* ============ HERO limpo (só vídeo, cinematográfico) ============ */
+.hero-scroll{height:150vh}
+.hero-scrim-clean{background:linear-gradient(0deg,rgba(8,8,7,.45) 0%,transparent 32%),radial-gradient(120% 80% at 50% 40%,transparent 60%,rgba(8,8,7,.28))}
+.hero-scroll .scroll-hint{color:rgba(255,255,255,.82)}
+
+/* ============ HISTÓRIA — retratos elegantes das sócias ============ */
+.founders{display:grid;grid-template-columns:repeat(4,1fr);gap:1.3rem;margin:0}
+@media(max-width:960px){.founders{grid-template-columns:1fr 1fr}}@media(max-width:540px){.founders{grid-template-columns:1fr}}
+.fdr{margin:0;position:relative}
+.fphoto{position:relative;aspect-ratio:3/4;border-radius:var(--r-lg);overflow:hidden;display:grid;place-items:center;
+  background:linear-gradient(155deg,color-mix(in srgb,var(--c) 42%,#20260f),#171b0d);
+  border:1px solid rgba(255,255,255,.12);box-shadow:0 24px 50px rgba(0,0,0,.35);transition:transform .5s var(--ease),box-shadow .5s}
+.fphoto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.fphoto .mono{font-family:var(--display);font-weight:800;font-size:clamp(3rem,7vw,5rem);color:var(--c);opacity:.9;line-height:1}
+.fphoto .ftag{position:absolute;top:12px;left:14px;font-family:var(--tech);font-weight:700;font-size:.82rem;letter-spacing:.14em;color:rgba(255,255,255,.62)}
+.fphoto::after{content:"";position:absolute;left:0;right:0;bottom:0;height:4px;background:var(--c)}
+.fdr:hover .fphoto{transform:translateY(-8px);box-shadow:0 34px 66px rgba(0,0,0,.45)}
+.fdr figcaption{padding:1.1rem .2rem 0}
+.fdr h4{font-size:1.28rem;color:#fff;margin-bottom:.15rem}
+.fdr .role{font-size:.85rem;color:rgba(251,248,241,.62);margin-bottom:.7rem}
+.fdr .qt{font-family:var(--display);font-weight:500;font-size:1.02rem;line-height:1.32;color:rgba(251,248,241,.94)}
+.fdr .qt::before{content:"“";color:var(--c)}
+
+/* ============ PORTAL — transição imersiva (atravessar o rostinho) ============ */
+.portal{position:relative;height:240vh}
+.portal-sticky{position:sticky;top:0;height:100vh;overflow:hidden;display:grid;place-items:center;
+  background:radial-gradient(120% 100% at 50% 42%,#FCFBF8 0%,#F3EFE6 48%,#E7E1D3 100%)}
+.p-face{position:relative;z-index:3;width:clamp(200px,26vw,360px);will-change:transform;transform-origin:52% 40%}
+.p-face img{width:100%;display:block;filter:drop-shadow(0 30px 60px rgba(0,0,0,.18))}
+.p-depth{position:absolute;z-index:1;border-radius:50%;will-change:transform;filter:blur(2px)}
+.p-d1{width:60vmin;height:60vmin;background:radial-gradient(circle,rgba(162,198,23,.22),transparent 68%)}
+.p-d2{width:96vmin;height:96vmin;background:radial-gradient(circle,rgba(234,92,37,.16),transparent 70%)}
+.p-word{position:absolute;z-index:2;font-family:var(--display);font-weight:800;text-transform:uppercase;letter-spacing:.02em;
+  font-size:clamp(3rem,13vw,11rem);color:transparent;-webkit-text-stroke:2px rgba(60,76,30,.28);opacity:.0;will-change:transform,opacity}
+.p-veil{position:absolute;inset:0;z-index:4;background:var(--musgo);opacity:0;pointer-events:none}
+@media(prefers-reduced-motion:reduce){.portal{height:auto}.portal-sticky{height:70vh}}

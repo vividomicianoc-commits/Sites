@@ -44,25 +44,7 @@
       </video>
     </div>
     <div class="hero-grain"></div>
-    <div class="hero-scrim" id="heroScrim"></div>
-    <div class="hero-ring ring white" id="heroRing" aria-hidden="true"></div>
-    <div class="wrap hero-copy">
-      <div class="eyebrow hero-eyebrow">Joy Group</div>
-      <div class="stext-wrap">
-        <div class="stext on" data-i="0">
-          <h1>Em tempo de <span class="u">cuidar de você</span>.</h1>
-          <p>O Joy Group nasceu para isso: reunir marcas que colocam a sua saúde no centro de tudo, na comida, na suplementação e em tudo que vier depois.</p>
-        </div>
-      </div>
-      <div class="hero-brands">
-        <div class="hbrand"><b>JoyEat</b><span>Comida saudável, rápida e transparente, do dia a dia.</span></div>
-        <div class="hbrand"><b>Joy Power</b><span>Suplementação limpa, pensada para cuidar de você por dentro.</span></div>
-      </div>
-      <div class="hero-cta">
-        <a class="btn btn-primary mag" href="#joyeat">Conhecer a JoyEat <span class="ar">→</span></a>
-        <a class="btn btn-ghost mag" href="#joypower">Conhecer a Joy Power</a>
-      </div>
-    </div>
+    <div class="hero-scrim hero-scrim-clean" id="heroScrim"></div>
     <div class="scroll-hint" id="scrollHint"><span>Role para explorar</span><span class="m"></span></div>
   </div>
 </section>
@@ -117,17 +99,40 @@
   </div>
 </section>
 
+<!-- PORTAL: transição imersiva (atravessa o rostinho para dentro da História) -->
+<section class="portal" id="portal" aria-hidden="true">
+  <div class="portal-sticky">
+    <div class="p-depth p-d2"></div>
+    <div class="p-depth p-d1"></div>
+    <div class="p-face"><img src="assets/rostinho_orange.png" alt=""></div>
+    <div class="p-word"><span>história</span></div>
+    <div class="p-veil"></div>
+  </div>
+</section>
+
 <!-- HISTÓRIA — seção escura de marca (musgo) -->
 <section class="sec tone-dark" id="historia">
   <div class="pat" aria-hidden="true"></div>
   <div class="wrap">
     <div class="sec-head reveal"><div><span class="kick light">02 · História</span><h2 class="creveal">Quatro mulheres.<br>Quatro dores. <span class="hl y">Uma solução</span>.</h2></div><span class="idx">Como nascemos</span></div>
     <p class="lead-d reveal">A JoyEat nasceu da vida real: da falta de tempo, da vontade de comer bem e do cuidado com quem a gente ama.</p>
-    <div class="timeline">
-      <div class="tl reveal rl" style="--c:var(--amarelo)"><div class="tn">01</div><div class="nm">Vitória</div><div class="role">Equilíbrio entre saúde física e mental</div><div class="qt">Saúde não é radicalismo. É equilíbrio.</div></div>
-      <div class="tl reveal rl" style="--c:var(--petroleo)"><div class="tn">02</div><div class="nm">Isabela</div><div class="role">Agilidade sem abrir mão do cuidado</div><div class="qt">Agilidade também é uma forma de cuidado.</div></div>
-      <div class="tl reveal rr" style="--c:var(--verde)"><div class="tn">03</div><div class="nm">Maria Eduarda</div><div class="role">Saúde para quem mais importa</div><div class="qt">Se não serviríamos para nossa família, não servimos para ninguém.</div></div>
-      <div class="tl reveal rr" style="--c:var(--laranja)"><div class="tn">04</div><div class="nm">Nathalia</div><div class="role">Saudável e gostoso de verdade</div><div class="qt">Saudável precisa sustentar. E encantar.</div></div>
+    <div class="founders">
+      <figure class="fdr reveal rl" style="--c:var(--amarelo)">
+        <div class="fphoto" data-photo="socia_vitoria.jpg"><span class="mono">V</span><span class="ftag">01</span></div>
+        <figcaption><h4>Vitória</h4><div class="role">Equilíbrio entre saúde física e mental</div><p class="qt">Saúde não é radicalismo. É equilíbrio.</p></figcaption>
+      </figure>
+      <figure class="fdr reveal rl" style="--c:var(--petroleo)">
+        <div class="fphoto" data-photo="socia_isabela.jpg"><span class="mono">I</span><span class="ftag">02</span></div>
+        <figcaption><h4>Isabela</h4><div class="role">Agilidade sem abrir mão do cuidado</div><p class="qt">Agilidade também é uma forma de cuidado.</p></figcaption>
+      </figure>
+      <figure class="fdr reveal rr" style="--c:var(--verde)">
+        <div class="fphoto" data-photo="socia_maria_eduarda.jpg"><span class="mono">M</span><span class="ftag">03</span></div>
+        <figcaption><h4>Maria Eduarda</h4><div class="role">Saúde para quem mais importa</div><p class="qt">Se não serviríamos para nossa família, não servimos para ninguém.</p></figcaption>
+      </figure>
+      <figure class="fdr reveal rr" style="--c:var(--laranja)">
+        <div class="fphoto" data-photo="socia_nathalia.jpg"><span class="mono">N</span><span class="ftag">04</span></div>
+        <figcaption><h4>Nathalia</h4><div class="role">Saudável e gostoso de verdade</div><p class="qt">Saudável precisa sustentar. E encantar.</p></figcaption>
+      </figure>
     </div>
   </div>
 </section>

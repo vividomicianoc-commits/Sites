@@ -22,9 +22,10 @@
     }
   }
 
-  /* fallback: se GSAP não carregar, mostra tudo */
+  /* fallback: se GSAP não carregar, mostra tudo e recolhe o portal (sem scrub) */
   if (!hasGSAP) {
     document.querySelectorAll('.reveal').forEach(function (e) { e.classList.add('in'); });
+    var pf = document.getElementById('portal'); if (pf) pf.style.display = 'none';
   }
 
   /* ---------- Nav sólido + barra de progresso ---------- */
@@ -133,6 +134,32 @@
     if (bgflow) {
       gsap.to(bgflow, { yPercent: -6, ease: 'none',
         scrollTrigger: { trigger: document.body, start: 'top top', end: 'bottom bottom', scrub: true } });
+    }
+
+    /* ---------- PORTAL: atravessar o rostinho para a próxima seção ---------- */
+    var portal = document.getElementById('portal');
+    if (portal) {
+      var pFace = portal.querySelector('.p-face');
+      var pVeil = portal.querySelector('.p-veil');
+      var pWord = portal.querySelector('.p-word');
+      var pD1 = portal.querySelector('.p-d1');
+      var pD2 = portal.querySelector('.p-d2');
+      ScrollTrigger.create({
+        trigger: portal, start: 'top top', end: 'bottom bottom', scrub: 1,
+        onUpdate: function (self) {
+          var p = self.progress;
+          // rostinho cresce e "engole" a tela (profundidade acelerada)
+          var s = 1 + p * p * 26;
+          gsap.set(pFace, { scale: s, rotation: p * 34, opacity: p < 0.72 ? 1 : Math.max(0, 1 - (p - 0.72) / 0.2) });
+          // palavra ao fundo aproxima (camada de profundidade)
+          if (pWord) gsap.set(pWord, { scale: 1 + p * 2.4, opacity: p < 0.5 ? p * 0.9 : Math.max(0, 0.45 - (p - 0.5)) , y: (0.5 - p) * 60 });
+          // blobs de cor em velocidades diferentes = profundidade
+          if (pD1) gsap.set(pD1, { scale: 1 + p * 7, opacity: 1 - p });
+          if (pD2) gsap.set(pD2, { scale: 1 + p * 11, opacity: Math.max(0, 0.7 - p * 0.7) });
+          // véu musgo assume no fim -> funde com a seção História
+          if (pVeil) gsap.set(pVeil, { opacity: Math.max(0, (p - 0.62) / 0.38) });
+        }
+      });
     }
 
     window.addEventListener('load', function () { ScrollTrigger.refresh(); });
