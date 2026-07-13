@@ -23,6 +23,7 @@
   }
 
   /* fallback: se GSAP não carregar, mostra tudo e recolhe o portal (sem scrub) */
+  if (!hasGSAP || reduce) { document.documentElement.classList.add('no-gsap'); }
   if (!hasGSAP) {
     document.querySelectorAll('.reveal').forEach(function (e) { e.classList.add('in'); });
     var pf = document.getElementById('portal'); if (pf) pf.style.display = 'none';
@@ -164,6 +165,18 @@
       });
     }
 
+    /* ---------- SOBRE: entrada editorial em etapas ---------- */
+    var sobre = document.getElementById('sobre');
+    if (sobre && sobre.querySelector('.sobre-title')) {
+      var st = gsap.timeline({ scrollTrigger: { trigger: sobre, start: 'top 70%' }, defaults: { ease: 'power3.out' } });
+      st.fromTo('.s-kick', { opacity: 0, x: -18 }, { opacity: 1, x: 0, duration: .5 }, 0)
+        .fromTo('.sobre-title .ln:nth-child(1)>span', { yPercent: 110, filter: 'blur(8px)' }, { yPercent: 0, filter: 'blur(0px)', duration: .8 }, .15)
+        .fromTo('.sobre-title .ln:nth-child(2)>span', { yPercent: 110, filter: 'blur(8px)' }, { yPercent: 0, filter: 'blur(0px)', duration: .85 }, .45)
+        .fromTo('.s-eq', { scale: .9 }, { scale: 1, duration: .7, ease: 'power2.out' }, .5)
+        .fromTo('.s-lead>span', { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: .6, stagger: .12 }, .8)
+        .fromTo('.s-idx', { opacity: 0 }, { opacity: 1, duration: .5 }, 1.0);
+    }
+
     /* ---------- Foto das fundadoras: Ken Burns + parallax sutil ---------- */
     var fpImg = document.querySelector('.fp-img');
     if (fpImg) {
@@ -264,6 +277,60 @@
       })();
     }
   }
+
+  /* ---------- HISTÓRIA: fundadoras interativas (nome -> painel) ---------- */
+  (function () {
+    var f = document.getElementById('founders');
+    if (!f) return;
+    var tags = f.querySelectorAll('.ptag');
+    var panels = f.querySelectorAll('.fpn');
+    function act(n) {
+      tags.forEach(function (t) { t.classList.toggle('on', t.getAttribute('data-f') === n); });
+      panels.forEach(function (p) { p.classList.toggle('on', p.getAttribute('data-f') === n); });
+    }
+    tags.forEach(function (t) {
+      ['pointerenter', 'focus', 'click'].forEach(function (ev) {
+        t.addEventListener(ev, function () { act(t.getAttribute('data-f')); });
+      });
+    });
+  })();
+
+  /* ---------- TEMPO: palavra dinâmica (Em tempo de …) ---------- */
+  (function () {
+    var wrap = document.getElementById('tempoWord');
+    if (!wrap || reduce) return;
+    var words = wrap.querySelectorAll('.tw');
+    var i = 0;
+    setInterval(function () {
+      var prev = i; i = (i + 1) % words.length;
+      words[prev].classList.remove('on'); words[prev].classList.add('out');
+      words[i].classList.remove('out'); words[i].classList.add('on');
+      setTimeout(function () { words[prev].classList.remove('out'); }, 850);
+    }, 2600);
+  })();
+
+  /* ---------- SABOR: pilares interativos (hover/click ativa o visual) ---------- */
+  (function () {
+    var flavor = document.getElementById('flavor');
+    if (!flavor) return;
+    var items = flavor.querySelectorAll('.fv-item');
+    var stage = flavor.querySelector('.fv-stage');
+    var num = flavor.querySelector('.fv-num');
+    var cap = flavor.querySelector('.fv-cap');
+    function activate(el) {
+      items.forEach(function (i) { i.classList.remove('on'); });
+      el.classList.add('on');
+      var c = el.style.getPropertyValue('--c') || 'var(--laranja)';
+      flavor.style.setProperty('--c', c);
+      if (num) num.textContent = el.getAttribute('data-n');
+      if (cap) cap.textContent = el.getAttribute('data-cap');
+    }
+    items.forEach(function (el) {
+      el.addEventListener('pointerenter', function () { activate(el); });
+      el.addEventListener('focus', function () { activate(el); });
+      el.addEventListener('click', function () { activate(el); });
+    });
+  })();
 
   /* filtros do cardápio */
   document.querySelectorAll('.filters').forEach(function (f) {
