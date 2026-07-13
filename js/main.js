@@ -164,6 +164,15 @@
       });
     }
 
+    /* ---------- Foto das fundadoras: Ken Burns + parallax sutil ---------- */
+    var fpImg = document.querySelector('.fp-img');
+    if (fpImg) {
+      gsap.fromTo(fpImg, { scale: 1.16, yPercent: -3 }, {
+        scale: 1.08, yPercent: 3, ease: 'none',
+        scrollTrigger: { trigger: '.founders-photo', start: 'top bottom', end: 'bottom top', scrub: true }
+      });
+    }
+
     /* ---------- MANIFESTO: pin scroll com sequência controlada pela câmera ---------- */
     var mani = document.getElementById('manifesto');
     if (mani) {
