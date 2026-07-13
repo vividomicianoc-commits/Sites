@@ -665,3 +665,58 @@ html.lenis, html.lenis body { height: auto; }
 
 /* palavra do slogan legível sobre o vídeo */
 .tempo .tw{text-shadow:0 6px 34px rgba(0,0,0,.55),0 1px 3px rgba(0,0,0,.4)}
+
+/* ============ MANIFESTO — narrativa clara (Alimentar que se transforma) ============ */
+.manifesto-pin{background:linear-gradient(180deg,#FCFBF8 0%,#F5F1E8 100%)}
+.mpin-stage{background:transparent;align-items:flex-start;text-align:left;justify-content:center}
+.mkick{color:var(--laranja)}
+.manifesto-pin .graf{opacity:.14}
+.m-selo{position:absolute;top:10%;right:6%;width:clamp(120px,16vw,220px);z-index:1;
+  filter:drop-shadow(0 18px 34px rgba(0,0,0,.14));animation:floatA 7s ease-in-out infinite;opacity:.96}
+.m-narr{position:relative;z-index:2;max-width:22ch}
+.m-open{font-family:var(--display);font-weight:600;font-size:clamp(1.1rem,2.5vw,1.8rem);color:var(--ink-soft);
+  opacity:0;transform:translateY(18px);transition:opacity .6s var(--ease),transform .6s var(--ease);margin-bottom:1.2rem}
+.m-open.on{opacity:1;transform:none}
+.m-big{font-family:var(--display);font-weight:800;letter-spacing:-.03em;line-height:1.0;
+  font-size:clamp(2.2rem,7vw,5.4rem);color:var(--ink)}
+.m-word{position:relative;display:inline-block}
+.m-word .mw{position:absolute;left:0;top:0;white-space:nowrap;color:var(--c);opacity:0;transform:translateY(.34em);filter:blur(10px);
+  transition:opacity .5s var(--ease),transform .6s var(--ease),filter .5s var(--ease)}
+.m-word .mw.on{opacity:1;transform:none;filter:blur(0)}
+.m-word .mw.fin{font-weight:800}
+.m-sign{font-family:var(--display);font-weight:500;font-size:clamp(1rem,2vw,1.4rem);color:var(--ink-soft);margin-top:1.4rem;
+  opacity:0;transform:translateY(14px);transition:opacity .6s var(--ease) .1s,transform .6s var(--ease) .1s}
+.m-sign.on{opacity:1;transform:none}
+.mprog span{background:linear-gradient(90deg,var(--laranja),var(--verde))}
+@media(prefers-reduced-motion:reduce){.m-selo{animation:none}}
+
+/* ============ CTA FINAL — conclusão clara (adesivo oficial, dois CTAs) ============ */
+.cta-final{position:relative;overflow:hidden;padding:clamp(5rem,12vw,9rem) 0;
+  background:radial-gradient(120% 90% at 80% 10%,#FFF3E7 0%,#FBF8F1 42%,#F4F0E7 100%)}
+.ctaf-selo{position:absolute;top:5%;right:2%;width:clamp(130px,18vw,240px);z-index:1;
+  filter:drop-shadow(0 18px 36px rgba(0,0,0,.16));animation:floatB 7.5s ease-in-out infinite}
+.ctaf-graf{position:absolute;width:clamp(200px,26vw,380px);height:clamp(200px,26vw,380px);opacity:.14;z-index:0}
+.ctaf-rost{position:absolute;top:12%;left:4%;width:clamp(80px,10vw,140px);opacity:.9;z-index:0;animation:floatC 8s ease-in-out infinite}
+.ctaf-rost img{width:100%;filter:drop-shadow(0 12px 22px rgba(0,0,0,.12))}
+.ctaf-in{position:relative;z-index:2;max-width:min(92vw,720px)}
+.cta-final .kick{margin-bottom:.8rem}
+.ctaf-title{font-family:var(--display);font-weight:800;letter-spacing:-.03em;line-height:1.02;font-size:clamp(2.3rem,6.4vw,5rem);color:var(--ink)}
+.ctaf-title .l1,.ctaf-title .l2{display:block;overflow:hidden;white-space:nowrap;padding-bottom:.06em}
+.ctaf-title .l1>*,.ctaf-title .l1,.ctaf-title .l2{will-change:transform}
+.ctaf-title .l1,.ctaf-title .l2{transform:translateY(110%);transition:transform .9s var(--ease)}
+.ctaf-in.seen .ctaf-title .l1{transform:none;transition-delay:.1s}
+.ctaf-in.seen .ctaf-title .l2{transform:none;transition-delay:.32s}
+.ctaf-title .hl{color:var(--laranja)}
+.ctaf-sub{max-width:46ch;margin:1.4rem 0 2rem;color:var(--ink-soft);font-size:clamp(1rem,1.6vw,1.2rem);
+  opacity:0;transform:translateY(16px);transition:opacity .6s var(--ease) .5s,transform .6s var(--ease) .5s}
+.ctaf-in.seen .ctaf-sub{opacity:1;transform:none}
+.ctaf-cta{display:flex;gap:.8rem;flex-wrap:wrap;opacity:0;transform:translateY(16px);transition:opacity .6s var(--ease) .65s,transform .6s var(--ease) .65s}
+.ctaf-in.seen .ctaf-cta{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.ctaf-selo,.ctaf-rost{animation:none}.ctaf-title .l1,.ctaf-title .l2{transform:none}.ctaf-sub,.ctaf-cta{opacity:1;transform:none}}
+/* a palavra final dimensiona o container do morph */
+.m-word .mw.fin{position:relative;font-weight:800}
+/* adesivo oficial na Loja (branding) */
+.loja-selo{position:absolute;top:6%;right:5%;width:clamp(110px,15vw,200px);z-index:1;
+  filter:drop-shadow(0 16px 30px rgba(0,0,0,.15));animation:floatC 8s ease-in-out infinite}
+@media(max-width:820px){.loja-selo{width:96px;top:2%;right:3%;opacity:.9}}
+@media(prefers-reduced-motion:reduce){.loja-selo{animation:none}}

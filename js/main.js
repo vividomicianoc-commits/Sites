@@ -26,7 +26,13 @@
   if (!hasGSAP) {
     var pf = document.getElementById('portal'); if (pf) pf.style.display = 'none';
     var mf = document.getElementById('manifesto');
-    if (mf) { mf.style.height = 'auto'; var ms = mf.querySelector('.mpin-stage'); if (ms) { ms.style.height = 'auto'; ms.style.padding = '4rem 6vw'; } }
+    if (mf) {
+      mf.style.height = 'auto'; var ms = mf.querySelector('.mpin-stage'); if (ms) { ms.style.height = 'auto'; ms.style.padding = 'clamp(4rem,9vw,7rem) 6vw'; }
+      var mo = mf.querySelector('.m-open'); if (mo) mo.classList.add('on');
+      mf.querySelectorAll('.m-word .mw').forEach(function (w) { w.classList.remove('on'); });
+      var mfin = mf.querySelector('.mw.fin'); if (mfin) mfin.classList.add('on');
+      var msg = mf.querySelector('.m-sign'); if (msg) msg.classList.add('on');
+    }
   }
 
   /* ---------- Entradas via IntersectionObserver (animam com OU sem GSAP) ---------- */
@@ -195,20 +201,24 @@
       });
     }
 
-    /* ---------- MANIFESTO: pin scroll com sequência controlada pela câmera ---------- */
+    /* ---------- MANIFESTO: narrativa "Alimentar ___" guiada pelo scroll ---------- */
     var mani = document.getElementById('manifesto');
     if (mani) {
-      gsap.set('.mline', { opacity: 0, y: 64, filter: 'blur(8px)' });
-      var mtl = gsap.timeline({
-        scrollTrigger: {
-          trigger: mani, start: 'top top', end: 'bottom bottom',
-          scrub: 1, pin: '.mpin-stage', anticipatePin: 1
+      var mOpen = mani.querySelector('.m-open');
+      var mWords = mani.querySelectorAll('.m-word .mw');
+      var mSign = mani.querySelector('.m-sign');
+      var mbar = mani.querySelector('.mprog span');
+      ScrollTrigger.create({
+        trigger: mani, start: 'top top', end: 'bottom bottom', scrub: .6, pin: '.mpin-stage', anticipatePin: 1,
+        onUpdate: function (s) {
+          var p = s.progress, n = mWords.length;
+          if (mOpen) mOpen.classList.toggle('on', p > 0.04);
+          var idx = p < 0.14 ? 0 : (p > 0.96 ? n - 1 : Math.min(n - 1, Math.floor((p - 0.14) / 0.82 * n)));
+          mWords.forEach(function (w, i) { w.classList.toggle('on', i === idx); });
+          if (mSign) mSign.classList.toggle('on', p > 0.9);
+          if (mbar) mbar.style.width = (p * 100) + '%';
         }
       });
-      // elementos entram em sequência: 0.2s entre cada, ease power3.out
-      mtl.to('.mline', { opacity: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.6, stagger: 0.2 });
-      var mbar = mani.querySelector('.mprog span');
-      if (mbar) mtl.to(mbar, { width: '100%', ease: 'none' }, 0);
     }
 
     window.addEventListener('load', function () { ScrollTrigger.refresh(); });

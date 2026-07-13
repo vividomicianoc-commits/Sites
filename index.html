@@ -227,8 +227,8 @@
 
 <!-- LOJA -->
 <section class="sec" id="loja">
-  <div class="ring ring-dec" data-par="0.18" data-spin="1" style="bottom:-80px;left:-140px;width:360px;height:360px" aria-hidden="true"></div>
   <div class="wm" data-par="-0.08" data-spin="1" style="top:-160px;right:-11%"><img src="assets/rostinho_green.png" alt=""></div>
+  <img class="loja-selo" src="assets/selo_lugar.png" alt="" data-par="0.12" aria-hidden="true">
   <div class="wrap">
     <div class="sec-head reveal"><div><span class="kick">04 · Loja</span><h2 class="creveal">Da loja,<br>direto na <span class="hl">sua casa</span>.</h2></div><span class="idx">Geleias · Sucos · Shots</span></div>
     <div class="prods">
@@ -327,31 +327,33 @@
   </div>
 </section>
 
-<!-- MANIFESTO — pin scroll (ScrollTrigger): linhas entram em sequência, controladas pela câmera -->
+<!-- MANIFESTO — narrativa em scroll (claro, "Alimentar" que se transforma) -->
 <section class="manifesto-pin" id="manifesto">
   <div class="mpin-stage">
-    <div class="ring graf lg green" data-spin="1" style="top:-10%;right:-8%" aria-hidden="true"></div>
-    <span class="kick light mkick">Manifesto</span>
-    <div class="mlines">
-      <p class="mline">Alimentar é um <span>gesto de cuidado</span>.</p>
-      <p class="mline">Prazer e consciência <span>caminham juntos</span>.</p>
-      <p class="mline">Rapidez não precisa significar <span>descuido</span>.</p>
-      <p class="mline">Somos o ponto de equilíbrio entre <span>tempo e cuidado</span>.</p>
+    <div class="ring graf lg green" data-spin="1" style="top:-8%;left:-7%" aria-hidden="true"></div>
+    <img class="m-selo" src="assets/selo_tempo.png" alt="" aria-hidden="true">
+    <span class="kick mkick">Manifesto</span>
+    <div class="m-narr">
+      <p class="m-open">Tudo começa com um gesto.</p>
+      <h2 class="m-big">Alimentar<br><span class="m-word" id="mWord"><span class="mw on" style="--c:var(--laranja)">o corpo.</span><span class="mw" style="--c:var(--amarelo)">a energia.</span><span class="mw" style="--c:var(--verde)">os vínculos.</span><span class="mw" style="--c:var(--petroleo)">uma vida melhor.</span><span class="mw fin" style="--c:var(--laranja)">é um gesto de cuidado.</span></span></h2>
+      <p class="m-sign">É isso que move a Joy.</p>
     </div>
     <div class="mprog" aria-hidden="true"><span></span></div>
   </div>
 </section>
 
-<!-- CTA -->
-<section class="sec">
-  <div class="wrap">
-    <div class="cta reveal rs">
-      <div class="pat" data-par="0.1" aria-hidden="true"></div>
-      <div class="in">
-        <h2 class="creveal">Ainda dá tempo de comer bem.</h2>
-        <p>Escolher o que comer não deveria gerar dúvida. Deveria trazer tranquilidade.</p>
-        <a class="btn btn-light mag" href="#joyeat">Ver cardápio <span class="ar">→</span></a>
-      </div>
+<!-- CTA FINAL — conclusão da narrativa (claro, adesivo oficial, dois CTAs equilibrados) -->
+<section class="cta-final" id="cta">
+  <img class="ctaf-selo" src="assets/selo_favorito.png" alt="" aria-hidden="true">
+  <div class="ctaf-graf ring graf lg" data-par="0.14" data-spin="1" style="bottom:-14%;left:-6%" aria-hidden="true"></div>
+  <div class="ctaf-rost" data-par="-0.08" aria-hidden="true"><img src="assets/rostinho_green.png" alt=""></div>
+  <div class="wrap ctaf-in" data-seen>
+    <span class="kick" style="color:var(--laranja)">Ainda dá tempo</span>
+    <h2 class="ctaf-title"><span class="l1">Ainda dá tempo</span> <span class="l2">de <em class="hl">comer bem</em>.</span></h2>
+    <p class="ctaf-sub">O tempo pode ser curto. O cuidado não precisa ser. A Joy existe para tornar essa escolha mais simples, gostosa e possível.</p>
+    <div class="ctaf-cta">
+      <a class="btn btn-primary mag" href="#joyeat">Conhecer a JoyEat <span class="ar">→</span></a>
+      <a class="btn btn-ghost mag" href="#joypower">Conhecer a Joy Power</a>
     </div>
   </div>
 </section>
