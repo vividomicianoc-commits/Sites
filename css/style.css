@@ -487,10 +487,10 @@ html.lenis, html.lenis body { height: auto; }
 .mprog span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--amarelo),var(--verde))}
 @media(prefers-reduced-motion:reduce){.manifesto-pin{height:auto}.mpin-stage{height:auto;padding:clamp(3rem,8vw,6rem) clamp(20px,6vw,90px)}}
 
-/* ============ HISTÓRIA — foto das fundadoras (tratamento cinematográfico) ============ */
-.founders-photo{position:relative;z-index:2}
-.fp-frame{position:relative;border-radius:var(--r-lg);overflow:hidden;aspect-ratio:1600/822;
-  border:1px solid rgba(255,255,255,.14);box-shadow:0 40px 90px rgba(0,0,0,.42)}
+/* ============ HISTÓRIA — foto das fundadoras (banner cinematográfico) ============ */
+.founders-photo{position:relative;z-index:2;width:96vw;max-width:1640px;margin:0 auto;padding:0 clamp(0px,1vw,10px)}
+.fp-frame{position:relative;border-radius:clamp(14px,1.6vw,26px);overflow:hidden;aspect-ratio:1600/822;
+  border:1px solid rgba(255,255,255,.14);box-shadow:0 44px 100px rgba(0,0,0,.46)}
 .fp-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.12);will-change:transform}
 .fp-grad{position:absolute;inset:0;pointer-events:none;
   background:linear-gradient(0deg,rgba(20,24,12,.86) 0%,rgba(20,24,12,.28) 26%,transparent 46%),
@@ -504,7 +504,7 @@ html.lenis, html.lenis body { height: auto; }
 .ptag b{font-family:var(--display);font-weight:700;font-size:clamp(.82rem,1.4vw,1.08rem);white-space:nowrap;
   text-shadow:0 2px 12px rgba(0,0,0,.6)}
 @media(max-width:620px){.ptag b{font-size:.72rem}.ptag .pt-line{height:16px}}
-.fquotes{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1rem;margin-top:1.8rem}
+.fquotes{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1rem;margin:2rem auto 0;max-width:1180px}
 @media(max-width:900px){.fquotes{grid-template-columns:1fr 1fr}}@media(max-width:540px){.fquotes{grid-template-columns:1fr}}
 .fquotes blockquote{margin:0;padding:1.15rem 1.2rem;border-radius:var(--r);border-left:4px solid var(--c);
   background:rgba(255,255,255,.05);border-top:1px solid rgba(255,255,255,.08)}
