@@ -22,13 +22,34 @@
     }
   }
 
-  /* fallback: se GSAP não carregar, mostra tudo e recolhe o portal (sem scrub) */
   if (!hasGSAP || reduce) { document.documentElement.classList.add('no-gsap'); }
   if (!hasGSAP) {
-    document.querySelectorAll('.reveal').forEach(function (e) { e.classList.add('in'); });
     var pf = document.getElementById('portal'); if (pf) pf.style.display = 'none';
     var mf = document.getElementById('manifesto');
     if (mf) { mf.style.height = 'auto'; var ms = mf.querySelector('.mpin-stage'); if (ms) { ms.style.height = 'auto'; ms.style.padding = '4rem 6vw'; } }
+  }
+
+  /* ---------- Entradas via IntersectionObserver (animam com OU sem GSAP) ---------- */
+  if ('IntersectionObserver' in window) {
+    var seenIO = new IntersectionObserver(function (es) {
+      es.forEach(function (x) {
+        if (x.isIntersecting) { x.target.classList.add('seen'); seenIO.unobserve(x.target); }
+      });
+    }, { threshold: 0.2, rootMargin: '0px 0px -6% 0px' });
+    document.querySelectorAll('[data-seen]').forEach(function (e) { seenIO.observe(e); });
+
+    /* .reveal: quando NÃO há GSAP, anima no scroll (preview) em vez de aparecer tudo de uma vez */
+    if (!hasGSAP) {
+      var revIO = new IntersectionObserver(function (es) {
+        es.forEach(function (x) {
+          if (x.isIntersecting) { var el = x.target; el.style.transitionDelay = '.05s'; el.classList.add('in'); revIO.unobserve(el); }
+        });
+      }, { threshold: 0.14, rootMargin: '0px 0px -5% 0px' });
+      document.querySelectorAll('.reveal').forEach(function (e) { revIO.observe(e); });
+    }
+  } else if (!hasGSAP) {
+    document.querySelectorAll('.reveal').forEach(function (e) { e.classList.add('in'); });
+    document.querySelectorAll('[data-seen]').forEach(function (e) { e.classList.add('seen'); });
   }
 
   /* ---------- Nav sólido + barra de progresso ---------- */
@@ -165,18 +186,6 @@
       });
     }
 
-    /* ---------- SOBRE: entrada editorial em etapas ---------- */
-    var sobre = document.getElementById('sobre');
-    if (sobre && sobre.querySelector('.sobre-title')) {
-      var st = gsap.timeline({ scrollTrigger: { trigger: sobre, start: 'top 70%' }, defaults: { ease: 'power3.out' } });
-      st.fromTo('.s-kick', { opacity: 0, x: -18 }, { opacity: 1, x: 0, duration: .5 }, 0)
-        .fromTo('.sobre-title .ln:nth-child(1)>span', { yPercent: 110, filter: 'blur(8px)' }, { yPercent: 0, filter: 'blur(0px)', duration: .8 }, .15)
-        .fromTo('.sobre-title .ln:nth-child(2)>span', { yPercent: 110, filter: 'blur(8px)' }, { yPercent: 0, filter: 'blur(0px)', duration: .85 }, .45)
-        .fromTo('.s-eq', { scale: .9 }, { scale: 1, duration: .7, ease: 'power2.out' }, .5)
-        .fromTo('.s-lead>span', { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: .6, stagger: .12 }, .8)
-        .fromTo('.s-idx', { opacity: 0 }, { opacity: 1, duration: .5 }, 1.0);
-    }
-
     /* ---------- Foto das fundadoras: Ken Burns + parallax sutil ---------- */
     var fpImg = document.querySelector('.fp-img');
     if (fpImg) {
@@ -278,21 +287,34 @@
     }
   }
 
-  /* ---------- HISTÓRIA: fundadoras interativas (nome -> painel) ---------- */
+  /* ---------- HISTÓRIA: fundadoras — auto-cicla (vivo) + hover/foco ---------- */
   (function () {
     var f = document.getElementById('founders');
     if (!f) return;
-    var tags = f.querySelectorAll('.ptag');
+    var tags = Array.prototype.slice.call(f.querySelectorAll('.ptag'));
     var panels = f.querySelectorAll('.fpn');
+    var cur = 0, timer = null, paused = false;
     function act(n) {
-      tags.forEach(function (t) { t.classList.toggle('on', t.getAttribute('data-f') === n); });
-      panels.forEach(function (p) { p.classList.toggle('on', p.getAttribute('data-f') === n); });
+      cur = n;
+      tags.forEach(function (t) { t.classList.toggle('on', +t.getAttribute('data-f') === n); });
+      panels.forEach(function (p) { p.classList.toggle('on', +p.getAttribute('data-f') === n); });
     }
+    function advance() { if (!paused) act((cur + 1) % tags.length); }
+    function start() { if (!reduce) { stop(); timer = setInterval(advance, 3200); } }
+    function stop() { if (timer) { clearInterval(timer); timer = null; } }
     tags.forEach(function (t) {
-      ['pointerenter', 'focus', 'click'].forEach(function (ev) {
-        t.addEventListener(ev, function () { act(t.getAttribute('data-f')); });
-      });
+      var n = +t.getAttribute('data-f');
+      t.addEventListener('pointerenter', function () { paused = true; act(n); });
+      t.addEventListener('focus', function () { paused = true; act(n); });
+      t.addEventListener('pointerleave', function () { paused = false; });
+      t.addEventListener('click', function () { act(n); });
     });
+    // só anima quando a seção está visível
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (es) {
+        es.forEach(function (x) { if (x.isIntersecting) start(); else stop(); });
+      }, { threshold: 0.25 }).observe(f);
+    } else { start(); }
   })();
 
   /* ---------- TEMPO: palavra dinâmica (Em tempo de …) ---------- */
