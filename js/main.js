@@ -26,6 +26,8 @@
   if (!hasGSAP) {
     document.querySelectorAll('.reveal').forEach(function (e) { e.classList.add('in'); });
     var pf = document.getElementById('portal'); if (pf) pf.style.display = 'none';
+    var mf = document.getElementById('manifesto');
+    if (mf) { mf.style.height = 'auto'; var ms = mf.querySelector('.mpin-stage'); if (ms) { ms.style.height = 'auto'; ms.style.padding = '4rem 6vw'; } }
   }
 
   /* ---------- Nav sólido + barra de progresso ---------- */
@@ -160,6 +162,22 @@
           if (pVeil) gsap.set(pVeil, { opacity: Math.max(0, (p - 0.62) / 0.38) });
         }
       });
+    }
+
+    /* ---------- MANIFESTO: pin scroll com sequência controlada pela câmera ---------- */
+    var mani = document.getElementById('manifesto');
+    if (mani) {
+      gsap.set('.mline', { opacity: 0, y: 64, filter: 'blur(8px)' });
+      var mtl = gsap.timeline({
+        scrollTrigger: {
+          trigger: mani, start: 'top top', end: 'bottom bottom',
+          scrub: 1, pin: '.mpin-stage', anticipatePin: 1
+        }
+      });
+      // elementos entram em sequência: 0.2s entre cada, ease power3.out
+      mtl.to('.mline', { opacity: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.6, stagger: 0.2 });
+      var mbar = mani.querySelector('.mprog span');
+      if (mbar) mtl.to(mbar, { width: '100%', ease: 'none' }, 0);
     }
 
     window.addEventListener('load', function () { ScrollTrigger.refresh(); });
