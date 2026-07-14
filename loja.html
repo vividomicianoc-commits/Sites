@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Loja — JoyEat | Sucos, Shots e Purês</title>
+  <meta name="description" content="A loja da JoyEat: sucos, shots e purês de verdade, adoçados com mel e sem conservantes. Uma marca do Joy Group.">
+  <meta property="og:title" content="Loja JoyEat — direto da nossa cozinha para você">
+  <meta property="og:description" content="Sucos, shots e purês de verdade. Adoçados com mel, sem conservantes.">
+  <link rel="icon" href="assets/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/loja.css">
+</head>
+<body class="loja-page">
+
+<div class="prog" id="prog" aria-hidden="true"></div>
+<div class="grain-g" aria-hidden="true"></div>
+
+<nav class="nav scrolled" id="nav">
+  <div class="wrap">
+    <a href="index.html#top" class="logo"><img src="assets/logo.png" alt="JoyEat"></a>
+    <div class="nav-links">
+      <a href="index.html#sobre">Sobre</a><a href="index.html#joyeat">JoyEat</a>
+      <a href="index.html#joypower">JoyPower</a><a href="loja.html" class="on">Loja</a>
+      <a href="index.html#trabalhe">Trabalhe Conosco</a>
+      <button class="nav-cta cart-open mag" id="cartOpenTop" aria-label="Abrir carrinho">Carrinho <span class="cart-count" id="cartCountTop">0</span></button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO curto da loja -->
+<header class="shop-hero">
+  <div class="ring graf lg" data-spin="1" style="top:-140px;right:-90px" aria-hidden="true"></div>
+  <div class="ring graf sm green" data-spin="1" style="bottom:-40px;left:4%" aria-hidden="true"></div>
+  <img class="shop-hero-rost" src="assets/rostinho_orange.png" alt="" aria-hidden="true">
+  <div class="wrap shop-hero-in" data-seen>
+    <span class="kick">Loja JoyEat</span>
+    <h1 class="shop-hero-title">Da nossa cozinha,<br>direto para <span class="hl">você</span>.</h1>
+    <p class="shop-hero-lead">Sucos, shots e purês de verdade — fruta, mel e nada escondido. A mesma verdade da JoyEat, agora para levar o cuidado ao seu dia.</p>
+    <div class="shop-hero-meta">
+      <span>🍯 Adoçado com mel</span><span>🌿 Sem conservantes</span><span>❄️ Produção fresca</span>
+    </div>
+  </div>
+</header>
+
+<!-- FILTROS + BUSCA -->
+<div class="shop-bar" id="shopBar">
+  <div class="wrap shop-bar-in">
+    <div class="shop-cats" id="shopCats" role="tablist">
+      <button class="scat on" data-cat="all">Tudo</button>
+      <button class="scat" data-cat="Purês">Purês</button>
+      <button class="scat" data-cat="Sucos">Sucos</button>
+      <button class="scat" data-cat="Shots">Shots</button>
+    </div>
+    <div class="shop-tools">
+      <label class="shop-search"><span class="ss-ic" aria-hidden="true">⌕</span>
+        <input type="search" id="shopSearch" placeholder="Buscar produto…" autocomplete="off">
+      </label>
+      <select id="shopSort" class="shop-sort" aria-label="Ordenar">
+        <option value="rel">Relevância</option>
+        <option value="az">Nome (A–Z)</option>
+        <option value="price-asc">Menor preço</option>
+        <option value="price-desc">Maior preço</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<!-- GRID DE PRODUTOS -->
+<main class="shop-main">
+  <div class="wrap">
+    <div class="shop-grid" id="shopGrid" aria-live="polite"><!-- render via js/shop.js --></div>
+    <div class="shop-empty" id="shopEmpty" hidden>
+      <div class="ring graf sm musgo" data-spin="1" aria-hidden="true"></div>
+      <p>Nenhum produto encontrado por aqui.</p>
+      <button class="btn btn-ghost" id="shopClear">Limpar filtros</button>
+    </div>
+    <p class="ph-note shop-note">Vitrine conectada à Shopify · JOY EAT FAST CASUAL LTDA. Preços e fotos provisórios enquanto o catálogo é finalizado.</p>
+  </div>
+</main>
+
+<!-- FAIXA -->
+<div class="band" aria-hidden="true"><div class="inner"></div></div>
+
+<footer>
+  <div class="ring footer-ring" data-spin="1" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a href="index.html#top" class="logo"><img src="assets/logo.png" alt="JoyEat"></a>
+        <p class="manifesto">Somos o ponto de equilíbrio entre <b>tempo e cuidado</b>, entre agilidade e intenção, entre leveza e saciedade.</p>
+      </div>
+      <div class="fnav"><a href="index.html#sobre">Sobre</a><a href="index.html#joyeat">JoyEat</a><a href="index.html#joypower">JoyPower</a><a href="loja.html">Loja</a><a href="index.html#trabalhe">Trabalhe Conosco</a></div>
+      <div class="cr">© 2026 JoyEat · uma marca do Joy Group · Todos os direitos reservados.</div>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== PAINEL DE PRODUTO (drawer) ===== -->
+<div class="pd-scrim" id="pdScrim" hidden></div>
+<aside class="pd" id="pd" aria-hidden="true" aria-label="Detalhes do produto">
+  <button class="pd-close" id="pdClose" aria-label="Fechar">✕</button>
+  <div class="pd-body" id="pdBody"><!-- render via js/shop.js --></div>
+</aside>
+
+<!-- ===== CARRINHO (drawer) ===== -->
+<div class="cart-scrim" id="cartScrim" hidden></div>
+<aside class="cart" id="cart" aria-hidden="true" aria-label="Carrinho">
+  <div class="cart-head">
+    <h3>Seu carrinho</h3>
+    <button class="cart-close" id="cartClose" aria-label="Fechar">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems"><!-- render via js/shop.js --></div>
+  <div class="cart-empty" id="cartEmpty">
+    <img src="assets/rostinho_green.png" alt="" aria-hidden="true">
+    <p>Seu carrinho está vazio.</p>
+    <button class="btn btn-ghost cart-close">Ver produtos</button>
+  </div>
+  <div class="cart-foot" id="cartFoot" hidden>
+    <div class="cart-sub"><span>Subtotal</span><b id="cartSubtotal">R$ 0,00</b></div>
+    <p class="cart-note">Frete e impostos calculados no checkout seguro da Shopify.</p>
+    <a class="btn btn-primary cart-checkout mag" id="cartCheckout" href="#">Finalizar compra <span class="ar">→</span></a>
+    <button class="cart-continue cart-close">Continuar comprando</button>
+  </div>
+</aside>
+
+<button class="cart-fab" id="cartFab" aria-label="Abrir carrinho" hidden>
+  <span class="cart-fab-ic">🛒</span><span class="cart-count" id="cartCountFab">0</span>
+</button>
+
+<div class="toast" id="toast" aria-live="polite" hidden></div>
+
+<script src="js/shop.js"></script>
+</body>
+</html>
