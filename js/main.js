@@ -25,14 +25,9 @@
   if (!hasGSAP || reduce) { document.documentElement.classList.add('no-gsap'); }
   if (!hasGSAP) {
     var pf = document.getElementById('portal'); if (pf) pf.style.display = 'none';
-    var mf = document.getElementById('manifesto');
-    if (mf) {
-      mf.style.height = 'auto'; var ms = mf.querySelector('.mpin-stage'); if (ms) { ms.style.height = 'auto'; ms.style.padding = 'clamp(4rem,9vw,7rem) 6vw'; }
-      var mo = mf.querySelector('.m-open'); if (mo) mo.classList.add('on');
-      mf.querySelectorAll('.m-word .mw').forEach(function (w) { w.classList.remove('on'); });
-      var mfin = mf.querySelector('.mw.fin'); if (mfin) mfin.classList.add('on');
-      var msg = mf.querySelector('.m-sign'); if (msg) msg.classList.add('on');
-    }
+    /* JoyPower: sem GSAP a seção pina não roda — cicla os estados por tempo (preview) */
+    var jpf = document.getElementById('joypower');
+    if (jpf) { jpf.classList.add('jp-flat'); }
   }
 
   /* ---------- Entradas via IntersectionObserver (animam com OU sem GSAP) ---------- */
@@ -201,22 +196,41 @@
       });
     }
 
-    /* ---------- MANIFESTO: narrativa "Alimentar ___" guiada pelo scroll ---------- */
-    var mani = document.getElementById('manifesto');
-    if (mani) {
-      var mOpen = mani.querySelector('.m-open');
-      var mWords = mani.querySelectorAll('.m-word .mw');
-      var mSign = mani.querySelector('.m-sign');
-      var mbar = mani.querySelector('.mprog span');
+    /* ---------- LOJA: produto flutuante atravessa a seção com o scroll ---------- */
+    var floatProd = document.getElementById('floatProd');
+    if (floatProd) {
+      gsap.fromTo(floatProd,
+        { yPercent: -34, rotation: -8, scale: 0.92 },
+        { yPercent: 40, rotation: 10, scale: 1.04, ease: 'none',
+          scrollTrigger: { trigger: '.loja-sec', start: 'top bottom', end: 'bottom top', scrub: 1 } });
+    }
+
+    /* ---------- JOYPOWER: seção pinada, produto gira em 3D e revela cada linha ---------- */
+    var jp = document.getElementById('joypower');
+    if (jp) {
+      var jpBottles = jp.querySelectorAll('.jp-bottle');
+      var jpSteps = jp.querySelectorAll('.jp-step');
+      var jpDots = jp.querySelectorAll('.jp-dots span');
+      var jpGlow = document.getElementById('jpGlow');
+      var jpColors = ['var(--amarelo)', 'var(--petroleo)', 'var(--verde)'];
+      var n = jpSteps.length;
+      function jpSet(idx, local) {
+        jpBottles.forEach(function (b, i) { b.classList.toggle('on', i === idx); });
+        jpSteps.forEach(function (s, i) { s.classList.toggle('on', i === idx); });
+        jpDots.forEach(function (d, i) { d.classList.toggle('on', i === idx); });
+        if (jpGlow) jpGlow.style.background = 'radial-gradient(circle,' + jpColors[idx] + ' 0%,transparent 68%)';
+        // rotação 3D contínua do palco durante toda a progressão
+        var scene = document.getElementById('jpScene');
+        if (scene) gsap.set(scene, { rotationY: (idx + local) * 120 - 60 });
+      }
+      jpSet(0, 0);
       ScrollTrigger.create({
-        trigger: mani, start: 'top top', end: 'bottom bottom', scrub: .6, pin: '.mpin-stage', anticipatePin: 1,
+        trigger: jp, start: 'top top', end: '+=' + (n * 90) + '%', scrub: 0.7, pin: '.jp-stage', anticipatePin: 1,
         onUpdate: function (s) {
-          var p = s.progress, n = mWords.length;
-          if (mOpen) mOpen.classList.toggle('on', p > 0.04);
-          var idx = p < 0.14 ? 0 : (p > 0.96 ? n - 1 : Math.min(n - 1, Math.floor((p - 0.14) / 0.82 * n)));
-          mWords.forEach(function (w, i) { w.classList.toggle('on', i === idx); });
-          if (mSign) mSign.classList.toggle('on', p > 0.9);
-          if (mbar) mbar.style.width = (p * 100) + '%';
+          var raw = s.progress * n;                 // 0..n
+          var idx = Math.min(n - 1, Math.floor(raw));
+          var local = raw - idx;                    // 0..1 dentro do passo
+          jpSet(idx, local);
         }
       });
     }
@@ -339,6 +353,48 @@
       words[i].classList.remove('out'); words[i].classList.add('on');
       setTimeout(function () { words[prev].classList.remove('out'); }, 850);
     }, 2600);
+  })();
+
+  /* ---------- JOYEAT: atributo dinâmico (Existe um Joy para …) ---------- */
+  (function () {
+    var wrap = document.getElementById('jeWord');
+    if (!wrap || reduce) return;
+    var words = wrap.querySelectorAll('.jw');
+    var visual = document.getElementById('jeVisual');
+    var i = 0;
+    setInterval(function () {
+      var prev = i; i = (i + 1) % words.length;
+      words[prev].classList.remove('on'); words[prev].classList.add('out');
+      words[i].classList.remove('out'); words[i].classList.add('on');
+      if (visual) visual.style.setProperty('--c', words[i].style.getPropertyValue('--c') || 'var(--laranja)');
+      setTimeout(function () { words[prev].classList.remove('out'); }, 820);
+    }, 2400);
+  })();
+
+  /* ---------- JOYPOWER (sem GSAP): cicla os estados por tempo quando visível ---------- */
+  (function () {
+    var jp = document.getElementById('joypower');
+    if (!jp || !jp.classList.contains('jp-flat')) return;
+    var bottles = jp.querySelectorAll('.jp-bottle');
+    var steps = jp.querySelectorAll('.jp-step');
+    var dots = jp.querySelectorAll('.jp-dots span');
+    var i = 0, timer = null;
+    function set(n) {
+      bottles.forEach(function (b, k) { b.classList.toggle('on', k === n); });
+      steps.forEach(function (s, k) { s.classList.toggle('on', k === n); });
+      dots.forEach(function (d, k) { d.classList.toggle('on', k === n); });
+    }
+    set(0);
+    function tick() { i = (i + 1) % steps.length; set(i); }
+    if (reduce) return;
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (es) {
+        es.forEach(function (x) {
+          if (x.isIntersecting) { if (!timer) timer = setInterval(tick, 2600); }
+          else if (timer) { clearInterval(timer); timer = null; }
+        });
+      }, { threshold: 0.3 }).observe(jp);
+    } else { timer = setInterval(tick, 2600); }
   })();
 
   /* ---------- SABOR: pilares interativos (hover/click ativa o visual) ---------- */

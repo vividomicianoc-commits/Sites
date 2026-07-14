@@ -225,67 +225,161 @@
 <!-- FAIXA ROSTINHO (laranja, reta, em movimento) -->
 <div class="band" aria-hidden="true"><div class="inner"></div></div>
 
-<!-- LOJA -->
-<section class="sec" id="loja">
-  <div class="wm" data-par="-0.08" data-spin="1" style="top:-160px;right:-11%"><img src="assets/rostinho_green.png" alt=""></div>
+<!-- LOJA — produto flutuante acompanhando o scroll (prévia da loja) -->
+<section class="sec loja-sec" id="loja">
   <img class="loja-selo" src="assets/selo_lugar.png" alt="" data-par="0.12" aria-hidden="true">
-  <div class="wrap">
-    <div class="sec-head reveal"><div><span class="kick">Loja</span><h2 class="creveal">Da loja,<br>direto na <span class="hl">sua casa</span>.</h2></div><span class="idx">Geleias · Sucos · Shots</span></div>
-    <div class="prods">
-      <div class="prod reveal rs"><div class="ph" style="background:linear-gradient(150deg,#F7A399,#E53323)"><span class="tg">Geleia</span></div><div class="bd"><h4>Geleia de Morango</h4><p>Fruta de verdade, adoçada com mel.</p></div></div>
-      <div class="prod reveal rs"><div class="ph" style="background:linear-gradient(150deg,#FBD35B,#FAB900)"><span class="tg">Geleia</span></div><div class="bd"><h4>Geleia de Abacaxi</h4><p>Tropical e refrescante, equilibrada pelo mel.</p></div></div>
-      <div class="prod reveal rs"><div class="ph" style="background:linear-gradient(150deg,#7FD6C4,#03969C)"><span class="tg">Shot</span></div><div class="bd"><h4>Shot de Imunidade</h4><p>Laranja, limão, gengibre, cúrcuma e canela.</p></div></div>
-      <div class="prod reveal rs"><div class="ph" style="background:linear-gradient(150deg,#C6E36B,#A2C617)"><span class="tg">Suco</span></div><div class="bd"><h4>Suco Detox</h4><p>Limão, pepino, abacaxi, couve e hortelã.</p></div></div>
+  <div class="wrap loja-wrap">
+    <div class="loja-copy" data-seen>
+      <span class="kick">Loja</span>
+      <h2 class="creveal">Da loja, direto na <span class="hl">sua casa</span>.</h2>
+      <p class="loja-lead">Geleias, bases para drinks, sucos, shots e a linha Joy Power. A mesma verdade da JoyEat, agora para levar o cuidado ao seu dia.</p>
+      <div class="loja-active">
+        <span class="la-cat">Geleias</span>
+        <h3 class="la-name">Geleia de Morango</h3>
+        <p class="la-desc">Fruta de verdade, adoçada com mel, sem conservantes.</p>
+        <div class="la-foot">
+          <span class="la-price">em breve</span>
+          <a class="btn btn-primary mag" href="#loja">Comprar</a>
+        </div>
+      </div>
+      <a class="loja-all mag" href="#loja">Ver toda a loja <span class="ar">→</span></a>
+      <p class="ph-note">Vitrine ilustrativa. Conecta à loja (Shopify) quando os produtos forem cadastrados.</p>
+    </div>
+    <div class="loja-stage" aria-hidden="true">
+      <div class="float-prod" id="floatProd">
+        <div class="fp-jar"><span class="fp-lid"></span><span class="fp-label"><img src="assets/rostinho_green.png" alt=""></span></div>
+        <div class="fp-shadow"></div>
+      </div>
+      <div class="loja-mini">
+        <div class="lm"><span class="lm-jar" style="--c:var(--amarelo)"></span><b>Geleia de Abacaxi</b></div>
+        <div class="lm"><span class="lm-jar" style="--c:var(--petroleo)"></span><b>Shot de Imunidade</b></div>
+        <div class="lm"><span class="lm-jar" style="--c:var(--verde)"></span><b>Suco Detox</b></div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- JOYEAT (cardápio) -->
-<section class="sec" id="joyeat">
-  <div class="ring graf lg green" data-par="0.16" data-spin="1" style="top:-130px;right:-130px" aria-hidden="true"></div>
-  <div class="wrap">
-    <div class="sec-head reveal"><div><span class="kick">JoyEat</span><h2 class="creveal">Sabor de verdade,<br>no <span class="hl">seu tempo</span>.</h2></div><span class="idx">Cardápio</span></div>
-    <div class="filters reveal"><span class="f on">Todos</span><span class="f">Low carb</span><span class="f">Vegano</span><span class="f">Sem glúten</span><span class="f">Café da manhã</span><span class="f">Almoço</span><span class="f">Bebidas</span></div>
-    <div class="prods">
-      <div class="prod reveal rs"><div class="ph" style="background:linear-gradient(150deg,#C6E36B,#A2C617)"><span class="tg">Monte seu bowl</span></div><div class="bd"><h4>Poke JoyEat</h4><p>Base, proteína, toppings, molho e crunch, do seu jeito.</p><div class="pr">a partir de R$ 32</div></div></div>
-      <div class="prod reveal rs"><div class="ph" style="background:linear-gradient(150deg,#FBD35B,#FAB900)"><span class="tg">Café da manhã</span></div><div class="bd"><h4>Breakfast bowl</h4><p>Ovos, abacate e pão de fermentação natural.</p><div class="pr">R$ 26</div></div></div>
-      <div class="prod reveal rs"><div class="ph" style="background:linear-gradient(150deg,#F7A399,#EA5C25)"><span class="tg">Almoço</span></div><div class="bd"><h4>Grelhado do dia</h4><p>Proteína grelhada, arroz integral e legumes.</p><div class="pr">R$ 34</div></div></div>
-      <div class="prod reveal rs"><div class="ph" style="background:linear-gradient(150deg,#7FD6C4,#03969C)"><span class="tg">Bebidas</span></div><div class="bd"><h4>Smoothie verde</h4><p>Couve, abacaxi, gengibre e hortelã.</p><div class="pr">R$ 18</div></div></div>
+<!-- JOYEAT — conceitual: o cardápio muda, o sabor continua -->
+<section class="sec joyeat-sec" id="joyeat">
+  <div class="ring graf lg green" data-par="0.16" data-spin="1" style="top:-120px;left:-9%" aria-hidden="true"></div>
+  <div class="wrap joyeat-in" data-seen>
+    <div class="sec-head reveal"><div><span class="kick">JoyEat</span><h2 class="creveal">Sabor de verdade,<br>no <span class="hl">seu tempo</span>.</h2></div><span class="idx">O universo do cardápio</span></div>
+    <div class="je-concept">
+      <div class="je-visual" id="jeVisual" aria-hidden="true">
+        <div class="jev-bowl"></div>
+        <div class="jev-ring ring" data-spin="1"></div>
+        <div class="jev-rost"><img src="assets/rostinho_orange.png" alt=""></div>
+        <div class="jev-tag">low carb</div>
+      </div>
+      <div class="je-attrs">
+        <p class="je-fixed">Existe um Joy para</p>
+        <div class="je-word" id="jeWord" aria-live="polite">
+          <span class="jw on" style="--c:var(--petroleo)">quem busca leveza.</span>
+          <span class="jw" style="--c:var(--verde)">quem prefere vegetal.</span>
+          <span class="jw" style="--c:var(--laranja)">quem quer proteína.</span>
+          <span class="jw" style="--c:var(--amarelo)">quem evita glúten.</span>
+          <span class="jw" style="--c:var(--vermelho)">quem quer comer bem.</span>
+        </div>
+        <p class="je-note">O cardápio muda. <b>O sabor continua.</b></p>
+        <div class="je-tags">
+          <span>Low carb</span><span>Vegano</span><span>Vegetariano</span><span>Proteico</span><span>Sem glúten</span><span>Ingredientes limpos</span>
+        </div>
+      </div>
     </div>
-    <p class="imgnote reveal">Placeholders coloridos. As fotos reais dos pratos entram aqui quando você enviar.</p>
   </div>
 </section>
 
-<!-- DEPOIMENTOS -->
-<section class="sec">
+<!-- COMUNIDADE — mural vivo da Joy Group (não é só depoimento) -->
+<section class="sec community" id="comunidade">
   <div class="ring graf sm musgo" data-par="0.22" data-spin="1" style="bottom:-50px;left:-60px" aria-hidden="true"></div>
   <div class="wrap">
-    <div class="sec-head reveal"><div><span class="kick">Comunidade</span><h2 class="creveal">Quem prova, <span class="hl">confia</span>.</h2></div><span class="idx">Depoimentos</span></div>
-    <div class="quotes">
-      <div class="quote reveal rl"><div class="st">★★★★★</div><p>Finalmente um saudável que sustenta.</p><div class="who">Mariana S.</div></div>
-      <div class="quote reveal"><div class="st">★★★★★</div><p>Rápido, gostoso e sem culpa.</p><div class="who">Lucas P.</div></div>
-      <div class="quote reveal rr"><div class="st">★★★★★</div><p>Confio porque sei o que estou comendo.</p><div class="who">Ana C.</div></div>
+    <div class="comm-head" data-seen>
+      <span class="kick">Comunidade Joy</span>
+      <h2 class="creveal">Mais do que clientes,<br>uma <span class="hl">comunidade</span>.</h2>
+      <p class="comm-lead">A Joy nasce da alimentação, mas cresce no encontro entre pessoas, rotina, energia e bem-estar. JoyEat, Joy Power e as pessoas que escolhem viver melhor — todos os dias.</p>
     </div>
+
+    <div class="mural" data-seen>
+      <!-- mosaico editorial: fotos (placeholders) + depoimentos sobrepostos -->
+      <figure class="mtile t1 ph" data-par="0.06" style="--c:var(--laranja)">
+        <span class="ph-tag">Evento · JoyEat</span>
+      </figure>
+      <figure class="mtile t2 quote-tile" data-par="-0.05">
+        <div class="qt-st">★★★★★</div>
+        <p>“Finalmente um saudável que sustenta o dia inteiro.”</p>
+        <span class="qt-who">Mariana S. · cliente JoyEat</span>
+      </figure>
+      <figure class="mtile t3 ph" data-par="0.1" style="--c:var(--verde)">
+        <span class="ph-tag">Ativação · Goiânia</span>
+      </figure>
+      <figure class="mtile t4 ph" data-par="-0.08" style="--c:var(--petroleo)">
+        <span class="ph-tag">Bastidores · cozinha</span>
+      </figure>
+      <figure class="mtile t5 quote-tile alt" data-par="0.07">
+        <div class="qt-st">★★★★★</div>
+        <p>“Confio porque sei exatamente o que estou comendo.”</p>
+        <span class="qt-who">Ana C. · comunidade Joy</span>
+      </figure>
+      <figure class="mtile t6 ph" data-par="0.12" style="--c:var(--amarelo)">
+        <span class="ph-tag">Joy Power · rotina</span>
+      </figure>
+      <figure class="mtile t7 quote-tile" data-par="-0.04">
+        <div class="qt-st">★★★★★</div>
+        <p>“Energia de verdade, sem exagero. Virou parte da minha semana.”</p>
+        <span class="qt-who">Lucas P. · Joy Power</span>
+      </figure>
+    </div>
+    <p class="ph-note">Mosaico ilustrativo — os espaços recebem fotos reais de eventos, ativações e comunidade.</p>
   </div>
 </section>
 
 <!-- FAIXA ROSTINHO (verde, reta, em movimento) -->
 <div class="band b rev" aria-hidden="true"><div class="inner"></div></div>
 
-<!-- JOYPOWER -->
-<section class="sec tone-teal" id="joypower">
-  <div class="wrap">
-    <div class="power2 reveal rs">
-      <div class="ring ring-dec" data-spin="1" style="top:-110px;right:-90px;width:320px;height:320px" aria-hidden="true"></div>
-      <span class="kick" style="color:var(--petroleo)">JoyPower</span>
-      <h2 class="creveal">Em tempo de se <span class="hl" style="color:var(--petroleo)">fortalecer</span>.</h2>
-      <p class="psub">Suplementos limpos, com o mesmo propósito da JoyEat: cuidar da sua saúde de verdade, por dentro e por fora. Sem fórmula genérica, sem ingredientes que ninguém entende.</p>
-      <div class="pgrid">
-        <div class="pw2 reveal" style="--pc:var(--amarelo)"><div class="tag">JoyPower Dia</div><h4>Energia</h4><div class="em">Em tempo de viver bem.</div><p>Disposição para o seu dia, sem estimulantes pesados.</p></div>
-        <div class="pw2 reveal" style="--pc:var(--petroleo)"><div class="tag">JoyPower Noite</div><h4>Descanso</h4><div class="em">Em tempo de desacelerar.</div><p>Para o corpo relaxar e a mente desacelerar.</p></div>
-        <div class="pw2 reveal" style="--pc:var(--verde)"><div class="tag">JoyPower Fortalecimento</div><h4>Força</h4><div class="em">Em tempo de se fortalecer.</div><p>Força, resistência e vitalidade em qualquer idade.</p></div>
+<!-- JOYPOWER — narrativa pinada: o produto gira em 3D e revela cada linha -->
+<section class="jp-pin" id="joypower">
+  <div class="jp-stage">
+    <span class="kick jp-kick" style="color:var(--petroleo)">Joy Power</span>
+    <div class="jp-grid">
+      <!-- palco 3D do produto -->
+      <div class="jp-visual" aria-hidden="true">
+        <div class="jp-scene" id="jpScene">
+          <div class="jp-bottle" data-p="0">
+            <span class="jpb-cap"></span>
+            <span class="jpb-body" style="--pc:var(--amarelo)"><i class="jpb-face"><img src="assets/rostinho_orange.png" alt=""></i></span>
+          </div>
+          <div class="jp-bottle" data-p="1">
+            <span class="jpb-cap"></span>
+            <span class="jpb-body" style="--pc:var(--petroleo)"><i class="jpb-face"><img src="assets/rostinho_green.png" alt=""></i></span>
+          </div>
+          <div class="jp-bottle" data-p="2">
+            <span class="jpb-cap"></span>
+            <span class="jpb-body" style="--pc:var(--verde)"><i class="jpb-face"><img src="assets/rostinho_orange.png" alt=""></i></span>
+          </div>
+          <div class="jp-glow" id="jpGlow"></div>
+        </div>
+      </div>
+      <!-- texto que troca em sincronia -->
+      <div class="jp-copy">
+        <div class="jp-step" data-s="0">
+          <span class="jp-line">JoyPower Dia</span>
+          <h3 class="jp-msg">Energia.</h3>
+          <p class="jp-sup">Disposição e vitalidade para o seu dia — energia limpa, sem estimulantes pesados.</p>
+        </div>
+        <div class="jp-step" data-s="1">
+          <span class="jp-line">JoyPower Noite</span>
+          <h3 class="jp-msg">Descanso.</h3>
+          <p class="jp-sup">Para o corpo relaxar e a mente desacelerar. Equilíbrio para recuperar de verdade.</p>
+        </div>
+        <div class="jp-step" data-s="2">
+          <span class="jp-line">JoyPower Fortalecimento</span>
+          <h3 class="jp-msg">Força.</h3>
+          <p class="jp-sup">Resistência, sustentação e vitalidade de longo prazo, em qualquer idade.</p>
+        </div>
+        <div class="jp-dots" aria-hidden="true"><span class="on"></span><span></span><span></span></div>
       </div>
     </div>
+    <p class="ph-note jp-note">Embalagens ilustrativas — substituíveis pelos frascos oficiais da Joy Power.</p>
   </div>
 </section>
 
@@ -305,15 +399,30 @@
   </div>
 </section>
 
-<!-- TRABALHE CONOSCO -->
-<section class="sec" id="trabalhe">
-  <div class="wrap">
-    <div class="join reveal rs">
-      <div class="pat" data-par="0.1" aria-hidden="true"></div>
-      <div class="in">
-        <span class="kick light">Trabalhe Conosco</span>
-        <h2 class="creveal">Vem construir a JoyEat<br>com a <span class="hl y">gente</span>.</h2>
-        <p>Procuramos pessoas que acreditam que comida de verdade transforma vidas. Se cuidado e agilidade te movem, seu lugar é aqui.</p>
+<!-- TRABALHE CONOSCO — página editorial de cultura (Joy Group) -->
+<section class="sec join-sec" id="trabalhe">
+  <div class="join-stage" data-seen>
+    <img class="js-graf g1" src="assets/rostinho_orange.png" alt="" aria-hidden="true">
+    <div class="ring graf sm green js-graf g2" data-spin="1" aria-hidden="true"></div>
+    <img class="js-graf g3" src="assets/rostinho_green.png" alt="" aria-hidden="true">
+    <div class="ring graf sm js-graf g4" data-spin="1" aria-hidden="true"></div>
+
+    <div class="wrap join-in">
+      <span class="kick">Trabalhe Conosco</span>
+      <div class="js-build">
+        <p class="js-pre">A Joy ainda está sendo construída.</p>
+        <h2 class="js-title creveal">Venha construir<br>a <span class="hl">Joy Group</span> com a gente.</h2>
+      </div>
+      <p class="js-lead">Estamos criando novas formas de cuidar, alimentar e fortalecer pessoas. Algumas das pessoas que vão definir essa história podem estar chegando agora.</p>
+
+      <div class="js-photos" aria-hidden="true">
+        <div class="jsp ph" style="--c:var(--laranja)" data-par="0.08"><span class="ph-tag">Equipe</span></div>
+        <div class="jsp ph" style="--c:var(--verde)" data-par="-0.06"><span class="ph-tag">Bastidores</span></div>
+        <div class="jsp ph" style="--c:var(--petroleo)" data-par="0.1"><span class="ph-tag">Produto</span></div>
+      </div>
+
+      <div class="js-areas">
+        <span class="js-area-l">Áreas</span>
         <div class="roles">
           <span class="role-pill">Cozinha e produção</span>
           <span class="role-pill">Atendimento</span>
@@ -321,24 +430,9 @@
           <span class="role-pill">Marketing e conteúdo</span>
           <span class="role-pill">Desenvolvimento de produto</span>
         </div>
-        <a class="btn btn-light mag" href="mailto:contato@joygroup.com.br?subject=Trabalhe%20Conosco%20JoyEat">Enviar currículo <span class="ar">→</span></a>
       </div>
+      <a class="btn btn-primary mag" href="mailto:contato@joygroup.com.br?subject=Construir%20a%20Joy%20Group">Quero construir junto <span class="ar">→</span></a>
     </div>
-  </div>
-</section>
-
-<!-- MANIFESTO — narrativa em scroll (claro, "Alimentar" que se transforma) -->
-<section class="manifesto-pin" id="manifesto">
-  <div class="mpin-stage">
-    <div class="ring graf lg green" data-spin="1" style="top:-8%;left:-7%" aria-hidden="true"></div>
-    <img class="m-selo" src="assets/selo_tempo.png" alt="" aria-hidden="true">
-    <span class="kick mkick">Manifesto</span>
-    <div class="m-narr">
-      <p class="m-open">Tudo começa com um gesto.</p>
-      <h2 class="m-big">Alimentar<br><span class="m-word" id="mWord"><span class="mw on" style="--c:var(--laranja)">o corpo.</span><span class="mw" style="--c:var(--amarelo)">a energia.</span><span class="mw" style="--c:var(--verde)">os vínculos.</span><span class="mw" style="--c:var(--petroleo)">uma vida melhor.</span><span class="mw fin" style="--c:var(--laranja)">é um gesto de cuidado.</span></span></h2>
-      <p class="m-sign">É isso que move a Joy.</p>
-    </div>
-    <div class="mprog" aria-hidden="true"><span></span></div>
   </div>
 </section>
 
