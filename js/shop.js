@@ -61,26 +61,26 @@
         ingredients: ['Maracujá', 'Água de coco', 'Pitaya', 'Morango', 'Mel'],
         badges: ['Tropical', 'Refrescante'] },
 
-      { id: 'pure-abacaxi', title: 'Purê de Abacaxi', cat: 'Purês', variant: '55735961223460',
+      { id: 'pure-abacaxi', title: 'Base de Abacaxi', cat: 'Bases', variant: '55735961223460',
         price: 9.00, color: '--laranja', img: null,
-        tagline: 'Fruta de verdade no ponto de geleia',
-        desc: 'Abacaxi cozinhado no ponto de geleia, adoçado com mel e sem conservantes. No pão, no iogurte ou nas receitas.',
+        tagline: 'Base para drinks e sobremesas',
+        desc: 'Abacaxi no ponto certo, adoçado com mel e sem conservantes. Base para drinks, mocktails, sobremesas ou para adoçar do seu jeito.',
         ingredients: ['Abacaxi', 'Mel', 'Água'],
-        badges: ['Geleia', 'Sem conservantes'] },
+        badges: ['Base para drinks', 'Sem conservantes'] },
 
-      { id: 'pure-frutas-vermelhas', title: 'Purê de Frutas Vermelhas', cat: 'Purês', variant: '55735962075428',
+      { id: 'pure-frutas-vermelhas', title: 'Base de Frutas Vermelhas', cat: 'Bases', variant: '55735962075428',
         price: 9.00, color: '--vermelho', img: null,
-        tagline: 'Doçura e acidez equilibradas',
-        desc: 'O equilíbrio das frutas vermelhas, adoçado só com mel. Cozinhado no ponto de geleia para o sabor de verdade.',
+        tagline: 'Base para drinks e sobremesas',
+        desc: 'O equilíbrio das frutas vermelhas, adoçado só com mel. Base para drinks, mocktails e sobremesas com sabor de verdade.',
         ingredients: ['Frutas vermelhas', 'Mel'],
-        badges: ['Geleia', 'Sem conservantes'] },
+        badges: ['Base para drinks', 'Sem conservantes'] },
 
-      { id: 'pure-maracuja', title: 'Purê de Maracujá', cat: 'Purês', variant: '55735962763556',
+      { id: 'pure-maracuja', title: 'Base de Maracujá', cat: 'Bases', variant: '55735962763556',
         price: 9.00, color: '--amarelo', img: null,
-        tagline: 'A intensidade tropical do maracujá',
-        desc: 'Maracujá adoçado com mel e sem conservantes, no ponto de geleia. Ideal para sobremesas, molhos ou puro.',
+        tagline: 'Base para drinks e sobremesas',
+        desc: 'A intensidade tropical do maracujá, adoçada com mel e sem conservantes. Base para drinks, mocktails e sobremesas.',
         ingredients: ['Maracujá', 'Mel'],
-        badges: ['Geleia', 'Sem conservantes'] }
+        badges: ['Base para drinks', 'Sem conservantes'] }
     ]
   };
 
@@ -100,7 +100,7 @@
   /* ---------- grafismo do produto (mock enquanto não há foto) ---------- */
   function productVisual(p) {
     if (p.img) return '<img class="pc-photo" src="' + p.img + '" alt="' + p.title + '">';
-    var jar = p.cat === 'Purês';
+    var jar = p.cat === 'Bases';
     return '<div class="pc-mock ' + (jar ? 'is-jar' : 'is-bottle') + '" style="--c:var(' + p.color + ')">' +
              '<span class="pcm-cap"></span><span class="pcm-body"><i class="pcm-face">' +
              '<img src="assets/rostinho_' + (jar ? 'green' : 'orange') + '.png" alt=""></i></span>' +
@@ -169,7 +169,7 @@
         '</div>' +
         '<button class="btn btn-primary mag" data-add-n="' + p.id + '">Adicionar ao carrinho</button>' +
       '</div>' +
-      '<p class="pd-meta">🍯 Adoçado com mel · 🌿 Sem conservantes · ❄️ Produção fresca · Rendimento e conservação informados no rótulo.</p>';
+      '<p class="pd-meta">Adoçado com mel · Sem conservantes · Produção fresca · Rendimento e conservação informados no rótulo.</p>';
     pd.classList.add('open'); pd.setAttribute('aria-hidden', 'false');
     pdScrim.hidden = false; requestAnimationFrame(function () { pdScrim.classList.add('show'); });
     document.body.classList.add('drawer-lock');

@@ -21,7 +21,9 @@ body.drawer-lock{overflow:hidden}
 .shop-hero-lead{max-width:52ch;color:var(--ink-soft);font-size:clamp(1rem,1.6vw,1.2rem);margin-bottom:1.6rem;
   opacity:0;transform:translateY(18px);transition:opacity .7s var(--ease) .2s,transform .7s var(--ease) .2s}
 .shop-hero-in.seen .shop-hero-lead{opacity:1;transform:none}
-.shop-hero-meta{display:flex;flex-wrap:wrap;gap:1.2rem;font-family:var(--display);font-weight:500;color:var(--ink-soft);font-size:.92rem}
+.shop-hero-meta{display:flex;flex-wrap:wrap;align-items:center;gap:.7rem 1.2rem;font-family:var(--display);font-weight:500;color:var(--ink-soft);font-size:.92rem}
+.shop-hero-meta span{display:inline-flex;align-items:center;gap:.6rem}
+.shop-hero-meta span::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--laranja)}
 @media(prefers-reduced-motion:reduce){.shop-hero-rost{animation:none}.shop-hero-title,.shop-hero-lead{opacity:1;transform:none}}
 
 /* ---------- barra de filtros ---------- */
@@ -163,7 +165,7 @@ body.drawer-lock{overflow:hidden}
   background:var(--laranja);color:#fff;box-shadow:0 14px 30px rgba(234,92,37,.4);display:flex;align-items:center;justify-content:center;
   transition:transform .25s var(--ease)}
 .cart-fab:hover{transform:scale(1.06)}
-.cart-fab-ic{font-size:1.4rem}
+.cart-fab-ic{width:24px;height:24px}
 .cart-fab .cart-count{position:absolute;top:-4px;right:-4px;margin:0;background:var(--vermelho);border:2px solid var(--paper)}
 
 /* toast */
