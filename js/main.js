@@ -53,6 +53,43 @@
     document.querySelectorAll('[data-seen]').forEach(function (e) { e.classList.add('seen'); });
   }
 
+  /* ---------- Navegação: rolagem suave + seção ativa (scrollspy) ---------- */
+  (function () {
+    var links = Array.prototype.slice.call(document.querySelectorAll('.nav-links a[href*="#"]'));
+    var map = {}; // id -> link (apenas âncoras desta página)
+    links.forEach(function (a) {
+      var href = a.getAttribute('href') || '';
+      var i = href.indexOf('#');
+      var id = i >= 0 ? href.slice(i + 1) : '';
+      var samePage = href.charAt(0) === '#' || href.indexOf('index.html#') === 0;
+      if (id && samePage && document.getElementById(id)) map[id] = a;
+    });
+    // rolagem suave ao clicar numa âncora da própria página
+    document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        var id = a.getAttribute('href').slice(1);
+        var t = id && document.getElementById(id);
+        if (!t) return;
+        e.preventDefault();
+        if (lenis) lenis.scrollTo(t, { offset: -70, duration: 1.1 });
+        else t.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
+        history.replaceState(null, '', '#' + id);
+      });
+    });
+    // destaca a seção ativa
+    var ids = Object.keys(map);
+    if (ids.length && 'IntersectionObserver' in window) {
+      var spy = new IntersectionObserver(function (es) {
+        es.forEach(function (x) {
+          if (x.isIntersecting) {
+            ids.forEach(function (k) { map[k].classList.toggle('on', k === x.target.id); });
+          }
+        });
+      }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+      ids.forEach(function (k) { spy.observe(document.getElementById(k)); });
+    }
+  })();
+
   /* ---------- Nav sólido + barra de progresso ---------- */
   var nav = document.getElementById('nav');
   var prog = document.getElementById('prog');

@@ -408,7 +408,10 @@ html.lenis, html.lenis body { height: auto; }
 .nav-links a:not(.nav-cta){position:relative}
 .nav-links a:not(.nav-cta)::after{content:"";position:absolute;left:0;right:100%;bottom:-4px;height:2px;background:var(--laranja);transition:right .3s var(--ease)}
 .nav-links a:not(.nav-cta):hover::after{right:0}
+.nav-links a:not(.nav-cta).on{color:var(--laranja)}
+.nav-links a:not(.nav-cta).on::after{right:0}
 @media(max-width:1100px){.nav-links{gap:.8rem}.nav-links a{font-size:.88rem}}
+@media(max-width:1180px){.nav-links{gap:.9rem}}
 
 /* velocidade de scroll inclina as faixas (JS seta --sk) */
 [data-skew] .mtrack,[data-skew] .ptrack{transform:skewX(var(--sk,0deg))}
@@ -691,6 +694,34 @@ html.lenis, html.lenis body { height: auto; }
 @media(prefers-reduced-motion:reduce){
   .ctaf-aura,.ctaf-rost,.ctaf-rost2,.ctaf-title .cw,.ctaf-title .cdot,.ctaf-sub{opacity:1;transform:none;filter:none;transition:none}
   .ctaf-title .hl::after{right:0}}
+
+/* ============ VALORES — no que a gente acredita ============ */
+.valores-sec{position:relative;overflow:hidden;background:linear-gradient(180deg,var(--paper) 0%,#F5F1E8 100%)}
+.val-lead{max-width:52ch;color:var(--ink-soft);font-size:clamp(1rem,1.6vw,1.2rem);margin:-.4rem 0 2.4rem}
+.val-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem}
+@media(max-width:900px){.val-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.val-grid{grid-template-columns:1fr}}
+.val-card{position:relative;background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+  padding:1.8rem 1.6rem 1.6rem;overflow:hidden;opacity:0;transform:translateY(28px);
+  transition:opacity .6s var(--ease),transform .6s var(--ease),box-shadow .35s var(--ease),border-color .35s}
+.val-card::before{content:"";position:absolute;top:0;left:0;width:100%;height:4px;background:var(--c);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
+.val-grid.seen .val-card{opacity:1;transform:none}
+.val-grid.seen .val-card:nth-child(2){transition-delay:.07s}
+.val-grid.seen .val-card:nth-child(3){transition-delay:.14s}
+.val-grid.seen .val-card:nth-child(4){transition-delay:.21s}
+.val-grid.seen .val-card:nth-child(5){transition-delay:.28s}
+.val-grid.seen .val-card:nth-child(6){transition-delay:.35s}
+.val-grid.seen .val-card::before{transform:scaleX(1)}
+.val-card:hover{box-shadow:0 20px 40px rgba(60,76,30,.1);border-color:color-mix(in srgb,var(--c) 45%,var(--line));transform:translateY(-4px)}
+.val-n{font-family:var(--display);font-weight:700;font-size:.82rem;letter-spacing:.06em;color:var(--c)}
+.val-card h3{font-family:var(--display);font-weight:700;font-size:1.35rem;color:var(--ink);margin:.4rem 0 .5rem;letter-spacing:-.01em}
+.val-card p{color:var(--ink-soft);font-size:.96rem;line-height:1.5}
+@media(prefers-reduced-motion:reduce){.val-card{opacity:1;transform:none}.val-card::before{transform:scaleX(1)}}
+
+/* ============ Páginas internas (Trabalhe) — nav fixa + respiro no topo ============ */
+.sub-page .nav{position:fixed}
+.sub-hero{min-height:100vh;display:flex;align-items:center;padding-top:clamp(6rem,12vw,8rem);padding-bottom:clamp(3rem,7vw,5rem)}
+
 /* adesivo oficial na Loja (branding) */
 .loja-selo{position:absolute;top:6%;right:5%;width:clamp(110px,15vw,200px);z-index:1;
   filter:drop-shadow(0 16px 30px rgba(0,0,0,.15));animation:floatC 8s ease-in-out infinite}
