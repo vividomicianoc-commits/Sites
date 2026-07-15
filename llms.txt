@@ -1,0 +1,32 @@
+# Joy Group — JoyEat
+
+> Joy Group é uma marca brasileira de Goiânia (GO) que reúne a JoyEat (alimentação saudável, prática e transparente) e a Joy Power (suplementos limpos). Propósito da marca: "Em tempo de comer bem".
+
+## Sobre
+- **Joy Group**: marca-mãe que une alimentação saudável, suplementação e comunidade de bem-estar.
+- **JoyEat**: comida e bebidas saudáveis — sucos, shots e bases para drinks, adoçados com mel e sem conservantes artificiais.
+- **Joy Power**: linha de suplementos com o mesmo propósito de cuidado.
+- **Origem**: fundada por quatro mulheres (Maria Eduarda, Nathalia, Vitória e Isabela), em Goiânia.
+
+## Valores
+- Fé em Deus.
+- Alimentação saudável é simples.
+- Tão rápido quanto gostoso.
+- Respeito à escolha de cada um.
+- Transparência do prato à entrega.
+- A cada mordida, uma surpresa.
+
+## Produtos (loja)
+- **Sucos**: Suco Detox, Pink Limonade, Pink Tropical.
+- **Shots**: Shot de Imunidade, Shot de Pré-Treino.
+- **Bases para drinks**: Base de Abacaxi, Base de Frutas Vermelhas, Base de Maracujá.
+- Todos adoçados com mel, sem conservantes artificiais, produção fresca/artesanal.
+
+## Páginas
+- Home (institucional): /
+- Loja (sucos, shots e bases para drinks): /loja.html
+- Trabalhe Conosco: /trabalhe.html
+
+## Contato
+- E-mail: contato@joygroup.com.br
+- Localização: Goiânia — GO, Brasil
