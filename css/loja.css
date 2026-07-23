@@ -65,8 +65,8 @@ body.drawer-lock{overflow:hidden}
 .pc-info{padding:1rem 1.1rem 1.2rem;display:flex;flex-direction:column;flex:1}
 .pc-title{font-family:var(--display);font-weight:700;font-size:1.08rem;color:var(--ink);margin-bottom:.15rem}
 .pc-tag{font-size:.85rem;color:var(--muted);margin-bottom:1rem;flex:1}
-.pc-foot{display:flex;align-items:center;justify-content:space-between;gap:.6rem}
-.pc-price{font-family:var(--display);font-weight:700;color:var(--ink);font-size:1.05rem}
+.pc-foot{display:flex;align-items:center;justify-content:space-between;gap:.5rem;flex-wrap:wrap}
+.pc-price{font-family:var(--display);font-weight:700;color:var(--ink);font-size:1.02rem;white-space:nowrap}
 .pc-add{font-family:var(--display);font-weight:600;font-size:.82rem;padding:.5rem .9rem;border-radius:var(--pill);
   border:1.5px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer;transition:.2s var(--ease);white-space:nowrap}
 .pc-add:hover{background:var(--ink);color:var(--paper)}
@@ -175,3 +175,58 @@ body.drawer-lock{overflow:hidden}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
 @media(prefers-reduced-motion:reduce){.pcard{opacity:1;transform:none}.pd,.cart{transition:none}}
+
+/* ============ PROMOÇÕES (refs: Insider, Essential, Sallve) ============ */
+/* selos no card */
+.pc-flags{position:absolute;top:.7rem;right:.7rem;z-index:2;display:flex;flex-direction:column;gap:.35rem;align-items:flex-end}
+.pc-off{font-family:var(--display);font-weight:800;font-size:.72rem;background:var(--vermelho);color:#fff;padding:.22rem .5rem;border-radius:7px;box-shadow:0 6px 14px rgba(229,51,35,.3)}
+.pc-hot{font-family:var(--display);font-weight:600;font-size:.62rem;letter-spacing:.04em;text-transform:uppercase;background:var(--ink);color:var(--paper);padding:.22rem .5rem;border-radius:7px}
+.pc-was{color:var(--muted);text-decoration:line-through;font-weight:500;font-size:.82em;margin-right:.15em}
+/* de/por no painel */
+.pd-price .pd-was{color:var(--muted);text-decoration:line-through;font-weight:500;font-size:.7em}
+.pd-off{font-family:var(--display);font-weight:800;font-size:.72rem;background:var(--vermelho);color:#fff;padding:.15rem .45rem;border-radius:7px;vertical-align:middle}
+.pd-off-tag{position:absolute;top:.8rem;left:.8rem;z-index:2;font-family:var(--display);font-weight:800;font-size:.8rem;background:var(--vermelho);color:#fff;padding:.25rem .55rem;border-radius:8px}
+/* kits — leve mais pague menos */
+.pd-kits{margin:1.4rem 0}
+.pd-kit-row{display:flex;gap:.5rem;margin-top:.6rem}
+.pd-kit{flex:1;display:flex;flex-direction:column;align-items:center;gap:.15rem;padding:.7rem .4rem;border:1.5px solid var(--line);border-radius:12px;background:var(--card);cursor:pointer;transition:.2s var(--ease);position:relative}
+.pd-kit b{font-family:var(--display);font-weight:700;font-size:.9rem;color:var(--ink)}
+.pd-kit-un{font-size:.76rem;color:var(--muted)}
+.pd-kit-off{font-family:var(--display);font-weight:800;font-size:.64rem;background:var(--verde);color:#fff;padding:.1rem .35rem;border-radius:5px}
+.pd-kit:hover{border-color:var(--laranja)}
+.pd-kit.on{border-color:var(--laranja);background:color-mix(in srgb,var(--laranja) 8%,var(--card));box-shadow:0 0 0 1px var(--laranja) inset}
+/* whatsapp */
+.pd-wa{display:block;text-align:center;margin-top:.7rem;font-family:var(--display);font-weight:600;font-size:.92rem;color:#128C7E;
+  border:1.5px solid #128C7E;border-radius:var(--pill);padding:.6rem;transition:.2s var(--ease)}
+.pd-wa:hover{background:#128C7E;color:#fff}
+/* cross-sell */
+.xsell{margin-top:1.6rem;border-top:1px solid var(--line);padding-top:1.2rem}
+.xs-lbl{display:block;font-family:var(--display);font-weight:600;font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:.7rem}
+.xs-list{display:flex;flex-direction:column;gap:.5rem}
+.xs{display:grid;grid-template-columns:44px 1fr auto;gap:.7rem;align-items:center;background:var(--paper-2);border:1px solid var(--line);border-radius:12px;padding:.5rem .7rem;cursor:pointer;transition:.2s var(--ease)}
+.xs:hover{border-color:var(--laranja)}
+.xs-v{aspect-ratio:1;border-radius:9px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:linear-gradient(155deg,color-mix(in srgb,var(--c) 18%,#fff),var(--paper-2))}
+.xs-v .pc-mock{width:52%}
+.xs-t{display:flex;flex-direction:column;line-height:1.2}
+.xs-t b{font-family:var(--display);font-weight:600;font-size:.86rem;color:var(--ink)}
+.xs-t span{font-size:.8rem;color:var(--muted)}
+.xs-add{width:30px;height:30px;border-radius:50%;border:1.5px solid var(--ink);background:transparent;color:var(--ink);font-size:1.1rem;cursor:pointer;transition:.2s}
+.xs-add:hover{background:var(--ink);color:var(--paper)}
+/* barra de frete grátis / brinde no carrinho */
+.cart-prog{background:var(--paper-2);border:1px solid var(--line);border-radius:12px;padding:.7rem .8rem;margin-bottom:1rem}
+.cart-prog p{font-size:.82rem;color:var(--ink-soft);margin-bottom:.45rem}
+.cart-prog p b{color:var(--ink);font-family:var(--display);font-weight:700}
+.cart-prog-bar{height:7px;border-radius:5px;background:var(--line);overflow:hidden}
+.cart-prog-bar span{display:block;height:100%;background:linear-gradient(90deg,var(--laranja),var(--amarelo));transition:width .5s var(--ease)}
+.cart-prog.ok .cart-prog-bar span{background:linear-gradient(90deg,var(--verde),var(--teal))}
+/* cupom no rodapé do carrinho */
+.cart-coupon{margin-bottom:.8rem}
+.coupon-row{display:flex;gap:.5rem}
+.coupon-row input{flex:1;border:1.5px solid var(--line);border-radius:var(--pill);padding:.55rem .9rem;font-size:.88rem;background:var(--card);color:var(--ink);text-transform:uppercase}
+.coupon-row input:focus{outline:none;border-color:var(--laranja)}
+.coupon-row button{font-family:var(--display);font-weight:600;font-size:.86rem;padding:.55rem 1.1rem;border-radius:var(--pill);border:1.5px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer;transition:.2s}
+.coupon-row button:hover{background:var(--ink);color:var(--paper)}
+.coupon-on{font-size:.86rem;color:var(--verde);background:color-mix(in srgb,var(--verde) 10%,transparent);border:1px solid color-mix(in srgb,var(--verde) 30%,transparent);border-radius:10px;padding:.55rem .8rem;display:flex;align-items:center;gap:.4rem}
+.coupon-on b{font-family:var(--display);font-weight:700}
+.coupon-on button{margin-left:auto;background:none;border:none;color:var(--muted);text-decoration:underline;font-size:.8rem;cursor:pointer}
+@media(prefers-reduced-motion:reduce){.cart-prog-bar span{transition:none}}
