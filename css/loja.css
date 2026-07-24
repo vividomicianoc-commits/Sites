@@ -230,3 +230,40 @@ body.drawer-lock{overflow:hidden}
 .coupon-on b{font-family:var(--display);font-weight:700}
 .coupon-on button{margin-left:auto;background:none;border:none;color:var(--muted);text-decoration:underline;font-size:.8rem;cursor:pointer}
 @media(prefers-reduced-motion:reduce){.cart-prog-bar span{transition:none}}
+
+/* ============ BANNERS na página (ref: Essential "Whey Protein Experience") ============ */
+.promo-hero{position:relative;overflow:hidden;border-radius:var(--r-lg,20px);margin-bottom:1.6rem;
+  display:grid;grid-template-columns:1.3fr .7fr;align-items:center;gap:1rem;
+  background:linear-gradient(120deg,var(--musgo) 0%,#2b3715 100%);color:#fff;
+  padding:clamp(1.6rem,4vw,2.6rem);
+  opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.promo-hero.seen{opacity:1;transform:none}
+.promo-hero-txt{position:relative;z-index:2;max-width:46ch}
+.promo-kick{font-family:var(--display);font-weight:700;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--amarelo)}
+.promo-title{font-family:var(--display);font-weight:800;letter-spacing:-.02em;font-size:clamp(1.9rem,4.6vw,3rem);color:#fff;margin:.3rem 0 .5rem}
+.promo-sub{color:rgba(255,255,255,.85);font-size:clamp(.95rem,1.5vw,1.1rem);margin-bottom:1rem;max-width:40ch}
+.promo-sub b{color:#fff}
+.promo-price{display:flex;align-items:baseline;gap:.6rem;margin-bottom:1.2rem;flex-wrap:wrap}
+.promo-was{color:rgba(255,255,255,.6);text-decoration:line-through;font-family:var(--display);font-weight:500}
+.promo-now{font-family:var(--display);font-weight:800;font-size:1.8rem;color:#fff}
+.promo-off{font-family:var(--display);font-weight:800;font-size:.8rem;background:var(--vermelho);color:#fff;padding:.2rem .5rem;border-radius:7px}
+.promo-hero .btn-primary{background:var(--laranja);border-color:var(--laranja);color:#fff}
+.promo-hero .btn-primary:hover{background:#fff;border-color:#fff;color:var(--musgo)}
+.promo-fine{font-size:.74rem;color:rgba(255,255,255,.6);margin-top:.9rem}
+/* arte: mini garrafas flutuando */
+.promo-hero-art{position:relative;height:100%;min-height:150px}
+.pha{position:absolute;bottom:0;width:clamp(46px,7vw,72px);aspect-ratio:.6;border-radius:12px 12px 16px 16px;
+  background:linear-gradient(150deg,#fff,#EDE8DC);box-shadow:0 18px 30px rgba(0,0,0,.3)}
+.pha.b1{right:44%;height:78%;--r:-8deg;transform:rotate(var(--r));background:linear-gradient(150deg,#fff,color-mix(in srgb,var(--laranja) 22%,#fff))}
+.pha.b2{right:20%;height:96%;background:linear-gradient(150deg,#fff,color-mix(in srgb,var(--verde) 22%,#fff))}
+.pha.b3{right:0;height:70%;transform:rotate(9deg);background:linear-gradient(150deg,#fff,color-mix(in srgb,var(--petroleo) 22%,#fff))}
+.pha-rost{position:absolute;top:6%;right:14%;width:clamp(40px,6vw,64px);z-index:2;filter:drop-shadow(0 8px 14px rgba(0,0,0,.25));animation:floatA 7s ease-in-out infinite}
+@media(max-width:720px){.promo-hero{grid-template-columns:1fr}.promo-hero-art{display:none}}
+@media(prefers-reduced-motion:reduce){.promo-hero{opacity:1;transform:none}.pha-rost{animation:none}}
+
+/* banner no meio da grade */
+.shop-inbanner{grid-column:1/-1;border-radius:var(--r);overflow:hidden;
+  background:linear-gradient(90deg,var(--laranja),var(--amarelo));color:#fff;
+  display:flex;align-items:center;justify-content:center;text-align:center;padding:1rem 1.2rem;min-height:64px}
+.sib-in{font-family:var(--display);font-weight:600;font-size:clamp(.85rem,1.6vw,1.05rem);letter-spacing:.01em}
+.sib-in b{font-weight:800}

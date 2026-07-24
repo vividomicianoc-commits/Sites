@@ -129,10 +129,14 @@
       ? '<span class="pc-price"><span class="pc-was">' + fmt(p.compareAt) + '</span> ' + fmt(p.price) + '</span>'
       : '<span class="pc-price">' + fmt(p.price) + '</span>';
   }
+  // banner no meio da grade (ref: reforço de frete grátis / cupom)
+  var midBanner = '<div class="shop-inbanner"><div class="sib-in">' +
+    '<b>FRETE GRÁTIS</b> acima de R$ ' + PROMO.freeShippingThreshold +
+    ' · <b>' + PROMO.firstPercent + '% OFF</b> na 1ª compra com o cupom <b>' + PROMO.firstCoupon + '</b></div></div>';
   function renderGrid() {
     var list = filtered();
     empty.hidden = list.length > 0;
-    grid.innerHTML = list.map(function (p, i) {
+    var cards = list.map(function (p, i) {
       var flags = (p.compareAt ? '<span class="pc-off">-' + offPct(p) + '%</span>' : '') +
                   (p.hot ? '<span class="pc-hot">Últimas unidades</span>' : '');
       return '<article class="pcard" data-id="' + p.id + '" style="--c:var(' + p.color + ');--d:' + (i * 0.05).toFixed(2) + 's">' +
@@ -149,7 +153,10 @@
           '</div>' +
         '</div>' +
       '</article>';
-    }).join('');
+    });
+    // insere o banner após a 1ª linha quando mostrando tudo (sem filtro/busca)
+    if (state.cat === 'all' && !state.q && cards.length > 4) cards.splice(4, 0, midBanner);
+    grid.innerHTML = cards.join('');
     requestAnimationFrame(function () { $$('.pcard', grid).forEach(function (c) { c.classList.add('in'); }); });
     bindMag();
   }
