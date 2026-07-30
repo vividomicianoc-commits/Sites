@@ -28,6 +28,8 @@
     /* JoyPower: sem GSAP a seção pina não roda — cicla os estados por tempo (preview) */
     var jpf = document.getElementById('joypower');
     if (jpf) { jpf.classList.add('jp-flat'); }
+    var ppf = document.getElementById('prodpin');
+    if (ppf) { ppf.classList.add('pp-flat'); }
   }
 
   /* ---------- Entradas via IntersectionObserver (animam com OU sem GSAP) ---------- */
@@ -272,6 +274,26 @@
       });
     }
 
+    /* ---------- PRODUTO EM DESTAQUE: gira no scroll + beats (estilo DRIP) ---------- */
+    var pp = document.getElementById('prodpin');
+    if (pp) {
+      var ppScene = document.getElementById('ppScene');
+      var ppBeats = pp.querySelectorAll('.pp-beat');
+      var ppHint = document.getElementById('ppHint');
+      var nb = ppBeats.length;
+      ScrollTrigger.create({
+        trigger: pp, start: 'top top', end: '+=' + (nb * 90) + '%', scrub: 0.7, pin: '.pp-stage', anticipatePin: 1,
+        onUpdate: function (s) {
+          var p = s.progress;
+          // gira o produto ~1,5 volta ao longo da seção (troque por sequência de fotos 360° depois)
+          if (ppScene) gsap.set(ppScene, { rotationY: p * 540, y: Math.sin(p * Math.PI) * -14 });
+          var idx = Math.min(nb - 1, Math.floor(p * nb));
+          ppBeats.forEach(function (b, i) { b.classList.toggle('on', i === idx); });
+          if (ppHint) ppHint.style.opacity = p > 0.04 ? 0 : 1;
+        }
+      });
+    }
+
     window.addEventListener('load', function () { ScrollTrigger.refresh(); });
   }
 
@@ -432,6 +454,27 @@
         });
       }, { threshold: 0.3 }).observe(jp);
     } else { timer = setInterval(tick, 2600); }
+  })();
+
+  /* ---------- PRODUTO EM DESTAQUE (sem GSAP): cicla os beats + gira leve ---------- */
+  (function () {
+    var pp = document.getElementById('prodpin');
+    if (!pp || !pp.classList.contains('pp-flat')) return;
+    var beats = pp.querySelectorAll('.pp-beat');
+    var scene = document.getElementById('ppScene');
+    var i = 0, timer = null, ang = 0;
+    function set(n) { beats.forEach(function (b, k) { b.classList.toggle('on', k === n); }); }
+    set(0);
+    function tick() { i = (i + 1) % beats.length; set(i); if (scene) { ang += 120; scene.style.transform = 'rotateY(' + ang + 'deg)'; } }
+    if (reduce) return;
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (es) {
+        es.forEach(function (x) {
+          if (x.isIntersecting) { if (!timer) timer = setInterval(tick, 2800); }
+          else if (timer) { clearInterval(timer); timer = null; }
+        });
+      }, { threshold: 0.3 }).observe(pp);
+    } else { timer = setInterval(tick, 2800); }
   })();
 
   /* ---------- SABOR: pilares interativos (hover/click ativa o visual) ---------- */
