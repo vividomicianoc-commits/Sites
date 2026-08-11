@@ -11,7 +11,7 @@
     giftThreshold: 149,             // R$ para brinde
     firstCoupon: 'JOY15',           // cupom de 1ª compra (criar igual na Shopify)
     firstPercent: 15,               // % do cupom
-    whatsapp: '5562000000000'       // número da loja (trocar pelo real)
+    whatsapp: '556292456199'        // WhatsApp oficial da Joy (+55 62 9245-6199)
   };
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var $ = function (s, r) { return (r || document).querySelector(s); };
@@ -64,6 +64,22 @@
   bar.innerHTML = '<div class="joy-bar-track" id="joyBarTrack"></div>';
   document.body.insertBefore(bar, document.body.firstChild);
   var track = $('#joyBarTrack');
+
+  /* ---------- botão flutuante de WhatsApp (todas as páginas) ---------- */
+  (function () {
+    var wcss = '.joy-wa{position:fixed;left:20px;bottom:20px;z-index:80;width:56px;height:56px;border-radius:50%;'
+      + 'background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 26px rgba(0,0,0,.28);'
+      + 'transition:transform .25s var(--ease,ease),box-shadow .25s}'
+      + '.joy-wa:hover{transform:translateY(-3px) scale(1.05);box-shadow:0 14px 32px rgba(37,211,102,.45)}'
+      + '.joy-wa svg{width:30px;height:30px;fill:#fff}'
+      + '@media(max-width:600px){.joy-wa{width:52px;height:52px;left:16px;bottom:16px}}';
+    var ws = document.createElement('style'); ws.textContent = wcss; document.head.appendChild(ws);
+    var a = document.createElement('a');
+    a.className = 'joy-wa'; a.setAttribute('aria-label', 'Falar no WhatsApp'); a.target = '_blank'; a.rel = 'noopener';
+    a.href = 'https://wa.me/' + P.whatsapp + '?text=' + encodeURIComponent('Olá! Vim pelo site da Joy e quero fazer um pedido.');
+    a.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.8-1.9-.9-.3-.1-.5-.2-.6.1-.2.3-.7.9-.8 1-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.6-1.5-.9-2.1-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.3.3-1 .9-1 2.3s1 2.7 1.2 2.9c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.4 1.3 4.9L2 22l5.3-1.4c1.4.8 3 1.2 4.7 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>';
+    document.body.appendChild(a);
+  })();
 
   function fmtCd() {
     var now = new Date(), end = new Date(); end.setHours(23, 59, 59, 999);
